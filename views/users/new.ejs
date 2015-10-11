@@ -12,9 +12,11 @@
 
 <div class="signup half">
   <h4>If you are a new user, please sign up</h4>
-  <form id="signup-form" action="/users/new" method="post">
+  <form id="signup-form" action="/users" method="post">
       <input type="text" name="user[username]" placeholder="Create username">
       <input type="password" name="user[password]" placeholder="password">
       <input type="submit" value="Signup">
   </form>
 </div>
+
+<a href="login.ejs">If an existing user, click here</a>

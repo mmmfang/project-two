@@ -2,22 +2,31 @@ var express = require('express'),
 	router = express.Router(),
 	User = require('../models/user.js');
 
-//define routes for this router
+router.get('/', function(req, res) {
+	User.find({}, function(err, allUsers){
+	res.render('users/index', {
+		user: allUsers
+	});
+ });
+}); 
+
+//define routes for sign in router
 router.get('/new', function(req, res) {
 	res.render('users/new');
-})
+}); //works
 
-router.post('/', function(req,res) {
+router.post('/new', function(req,res) {
 	var newUser = User(req.body.user);
-	console.log(newUser); 
-	newUser.save(function(err, user){
-		res.redirect(301,'/users/' + user._id)
-	})
+	console.log(newUser); //works here but then redirect dont
+	req.session.currentUser = newUser.username;
+	res.redirect(301,'welcome')
+	
 })
 
+//route for login router
 router.get('/login', function(req,res){
 	res.render('users/login');
-})
+}) //works
 
 router.post('/login', function(req,res){
 	var attempt = req.body.user;
@@ -34,12 +43,25 @@ router.post('/login', function(req,res){
 	});
 });
 
+//To show all users
 router.get('/:id', function(req,res){
 	User.findById(req.params.id, function(err,user){
 		console.log(err, user);
 	})
 })
+// })
+// //To edit
+// router.get('/:id/edit', function(req,res){
+// 	})
+// })
+
+// router.patch('/:id', function(req,res){
+// 	})
+// })
+
+// router.delete('/:id', function(req,res){
+// 	})
+// })
 
 //export router object
 module.exports = router;
-

@@ -45,9 +45,12 @@ server.use(function(req,res,next){
 // })
 
 //routes
-var userController = require('./controllers/users.js');
+var userController = require('/controllers/users.js');
 server.use('/users', userController);
-//this is importing the userController, telling everything inside it to be a sub route to /users
+
+var postsController = require('/controllers/posts.js');
+server.use('/posts', postsController);
+//anytime i go to anything inside posts, use my post controller
 
 server.get('/welcome', function(req, res) {
 	if (req.session.currentUser) {
@@ -60,9 +63,9 @@ server.get('/welcome', function(req, res) {
 });
 
 //defined routes
-server.get('/users', function(req,res) {
-	res.render('users/new');
-})
+server.get('/', function(req,res) {
+	res.write('Welcome to the front page');
+});
 
 server.get('/test', function(req,res) {
 	res.write("Welcome to my amazing app");
@@ -75,9 +78,9 @@ server.use(function(req,res,next){
 	res.end();
 })
 
+//Mongoose starts
+mongoose.set('debug', false);
 // mongoose.connect(MONGOURI + "/" + baubleBarForum);
 server.listen(PORT, function() {
 	console.log("SERVER IS UP ON PORT:", PORT);
 });
-
-mongoose.set('debug', false);

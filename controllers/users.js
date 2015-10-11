@@ -2,27 +2,33 @@ var express = require('express'),
 	router = express.Router(),
 	User = require('../models/user.js');
 
-router.get('/', function(req, res) {
-	User.find({}, function(err, allUsers){
-	res.render('users/index', {
-		user: allUsers
-	});
- });
-}); 
+// router.get('/', function(req, res) {
+// 	User.find({}, function(err, allUsers){
+// 	res.render('users/index', {
+// 		user: allUsers
+// 	});
+//  });
+// }); 
 
 //define routes for sign in router
 router.get('/new', function(req, res) {
 	res.render('users/new');
 }); //works
 
-router.post('/new', function(req,res) {
+router.post('/', function(req,res) {
 	var newUser = User(req.body.user);
 	console.log(newUser); //works here but then redirect dont
 	req.session.currentUser = newUser.username;
-	res.redirect(301,'welcome')
+	res.redirect(301,'/welcome')
 	
 })
 
+ router.get('/:id', function(req,res){
+ 	User.findById(req.params.id, function(err,user){
+-		console.log(user);
++		console.log(err, user);
+ 	})
+ })
 //route for login router
 router.get('/login', function(req,res){
 	res.render('users/login');

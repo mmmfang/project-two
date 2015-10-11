@@ -45,11 +45,11 @@ server.use(function(req,res,next){
 // })
 
 //routes
-var userController = require('/controllers/users.js');
+var userController = require('./controllers/users.js');
 server.use('/users', userController);
 
-var postsController = require('/controllers/posts.js');
-server.use('/posts', postsController);
+// var postsController = require('./controllers/posts.js');
+// server.use('/posts', postsController);
 //anytime i go to anything inside posts, use my post controller
 
 server.get('/welcome', function(req, res) {

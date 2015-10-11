@@ -49,6 +49,15 @@ var userController = require('./controllers/users.js');
 server.use('/users', userController);
 //this is importing the userController, telling everything inside it to be a sub route to /users
 
+server.get('/welcome', function(req, res) {
+	if (req.session.currentUser) {
+	res.render('welcome', {
+		currentUser: req.session.currentUser
+	});
+	} else {
+		res.redirect(301, '/users/login');
+	}
+});
 
 //defined routes
 server.get('/users', function(req,res) {

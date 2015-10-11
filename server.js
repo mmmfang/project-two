@@ -26,10 +26,33 @@ server.use(bodyParser.urlencoded({
 	extended:true
 }));
 
+server.use(session({
+	secret: "bleepbloopbleep",
+	resave: false,
+	saveUninitialized: true
+}))
+
+//utility routes
+
+server.use(function(req,res,next){
+	console.log("req dot sesion", req.session);
+	next(); //remember to continue on to the next part of sesion setting
+})
+server.use(function(req,res,next){
+	
+}
+
+//defined routes
+server.get('/', function(req,res) {
+
+	res.render('welcome');
+})
+
 server.get('/test', function(req,res) {
 	res.write("Welcome to my amazing app");
 	res.end();
 });
+
 
 // mongoose.connect(MONGOURI + "/" + baubleBarForum);
 server.listen(PORT, function() {

@@ -1,8 +1,17 @@
-* {
+
+body {
 	background-color: yellow;
-};
+}
 
 h1 {
 	size: 60px;
 	font-family: 'Roboto', sans-serif;
+}
+
+button.mainpage {
+	background-color: floralwhite;
+	font-size:24px;
+	border-radius: 10px;
+	
+	
 }

@@ -10,15 +10,21 @@ var express = require('express'),
 //  });
 // }); 
 
+router.get('/', function(req,res) {
+	res.render('index');
+	res.end();
+});
+
 //define routes for sign in router
 router.get('/new', function(req, res) {
 	res.render('users/new');
 }); //works
 
-router.post('/', function(req,res) {
+router.post('/new', function(req,res) {
 	var newUser = User(req.body.user);
 	console.log(newUser); //works here but then redirect dont
-	req.session.currentUser = newUser.username;
+	//req.param is the user ID? if so get that and render it's name in welcome page, and redirect to its number
+	myCurrentUser = req.session.newUser;
 	res.redirect(301,'/welcome')
 	
 })
@@ -48,6 +54,17 @@ router.post('/login', function(req,res){
 		}
 	});
 });
+
+router.get('/welcome', function(req, res) {
+	if (req.session.currentUser) {
+	res.render('welcome', {
+		currentUser: req.session.currentUser
+	});
+	} else {
+		res.redirect(301, '/users/login');
+	}
+});
+
 
 //To show all users
 router.get('/:id', function(req,res){

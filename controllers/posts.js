@@ -25,7 +25,7 @@ router.get('/', function(req, res) {
 // new - form is here
 router.get('/new', function(req, res) {
 	res.render('posts/new');
-
+console.log("posts new is working")
 	// var newPost = new Post(req.body.post);
 
 	// newPost.save(function(err, allPosts) {

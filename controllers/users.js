@@ -21,10 +21,11 @@ router.get('/new', function(req, res) {
 
 router.post('/new', function(req,res) {
 	var newUser = User(req.body.user);
-	console.log(newUser); //works here but then redirect dont
+	console.log("newuser is", newUser);
 	//req.param is the user ID? if so get that and render it's name in welcome page, and redirect to its number
 	// myCurrentUser = newUser.username;
 	// res.redirect(301,'welcome')
+	req.session.currentUser = newUser.username;
 	//what wasn't working yesterday is n
 	newUser.save(function(err,user){
 		if (err) {
@@ -48,6 +49,7 @@ router.get('/login', function(req,res){
 }) 
 
 router.post('/login', function(req,res){
+	console.log("login reqbodyuser", req.body.user);
 	var attempt = req.body.user;
 	User.findOne({username: attempt.username}, function(err, user) {
 		console.log(user);

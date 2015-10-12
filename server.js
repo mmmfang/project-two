@@ -50,7 +50,6 @@ server.get('/test', function(req,res) {
 
 server.get('/', function(req,res) {
 	res.render('homepage');
-	// res.end();
 });
 
 //utility routes
@@ -65,6 +64,7 @@ server.use(function(req,res,next){
 	req.session.viewCount = req.session.viewCount || 0;
 	req.session.viewCount++;
 	console.log("Number of views", req.session.viewCount);
+	next();
 })
 
 

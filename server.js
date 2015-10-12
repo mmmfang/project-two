@@ -76,8 +76,13 @@ server.use(function(req,res,next){
 
 //Mongoose starts
 mongoose.set('debug', false);
-// mongoose.connect(MONGOURI + "/" + dbname);
-//mongoose.connect(mongodb://localhost:27017/baubleBarForum)
+mongoose.connect(MONGOURI + "/" + dbname);
+mongoose.connect('mongodb://localhost:27017/baubleBarForum', function(){
+	console.log("connected to local mongodb");
+});
+
 server.listen(PORT, function() {
 	console.log("SERVER IS UP ON PORT:", PORT);
 });
+
+

@@ -23,10 +23,17 @@ router.post('/new', function(req,res) {
 	var newUser = User(req.body.user);
 	console.log(newUser); //works here but then redirect dont
 	//req.param is the user ID? if so get that and render it's name in welcome page, and redirect to its number
-	myCurrentUser = newUser.username;
-	res.redirect(301,'/welcome')
-	//what wasn't working yesterday is newUser.save(function(err,user){	
-})
+	// myCurrentUser = newUser.username;
+	// res.redirect(301,'welcome')
+	//what wasn't working yesterday is n
+	newUser.save(function(err,user){
+		if (err) {
+			console.log("new user not added, error");
+		} else {
+			res.redirect(302, '/');
+		}
+	})
+});
 
 //  router.get('/:id', function(req,res){
 //  	User.findById(req.params.id, function(err,user){
@@ -34,25 +41,26 @@ router.post('/new', function(req,res) {
 // +		console.log(err, user);
 //  	})
 //  })
-// //route for login router
-// router.get('/login', function(req,res){
-// 	res.render('users/login');
-// }) //works
 
-// router.post('/login', function(req,res){
-// 	var attempt = req.body.user;
-// 	User.findOne({username: attempt.username}, function(err, user) {
-// 		console.log(user);
-// 		if (user && user.password=== attempt.password) {
-// 			req.session.currentUser = user.username;
+//route for login router
+router.get('/login', function(req,res){
+	res.render('users/login');
+}) 
 
-// 			res.redirect(301,"/welcome");
-// 		} else {
-// 			console.log("no user w that name");
-// 			res.redirect(301, "/users/login")
-// 		}
-// 	});
-// });
+router.post('/login', function(req,res){
+	var attempt = req.body.user;
+	User.findOne({username: attempt.username}, function(err, user) {
+		console.log(user);
+		if (user && user.password=== attempt.password) {
+			req.session.currentUser = user.username;
+
+			res.redirect(301,"/index");
+		} else {
+			console.log("no user w that name");
+			res.redirect(301, "/users/login")
+		}
+	});
+});
 
 // router.get('/welcome', function(req, res) {
 // 	if (req.session.currentUser) {

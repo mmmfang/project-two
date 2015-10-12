@@ -26,28 +26,20 @@ router.get('/', function(req, res) {
 router.get('/new', function(req, res) {
 	console.log("posts new is working,hopefully rendering too");
 	res.render('posts/new');
-	// var newPost = new Post(req.body.post);
-
-	// newPost.save(function(err, allPosts) {
- //    if (err) {
- //      console.log("New post not added");
- //    } else {
- //      res.redirect(302, '/');
- //    }
- //  })
+  
 });
 
 
 // //CREATE - submitting the form to server
 router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
-	console.log(newPost);
+	console.log("new post is:", newPost);
 
-	newPost.save(function(err,post){
+	newPost.save(function(err,posts){
 		if (err) {
-			console.log(err);
+			console.log("new post not added, try again");
 		} else {
-			res.redirect(301,'/posts')
+			res.redirect(301,'/')
 		}
 	})
 });

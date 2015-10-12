@@ -32,17 +32,19 @@ server.use(bodyParser.urlencoded({
 	extended:true
 }));
 
+
 //defined routes
 
 server.get('/test', function(req,res) {
-	res.write("Welcome to my amazing app");
+	res.write("Welcome to my fantastico app");
 	res.end();
 });
 
 server.get('/', function(req,res) {
 	res.render('welcome');
-	res.end();
+	// res.end();
 });
+
 //utility routes
 
 server.use(function(req,res,next){
@@ -58,15 +60,20 @@ server.use(function(req,res,next){
 })
 
 //routes
-var userController = require('./controllers/users.js');
-server.use('/users', userController);
+// var userController = require('./controllers/users.js');
+// server.use('/users', userController);
 
-// var postsController = require('./controllers/posts.js');
-// server.use('/posts', postsController);
+var postsController = require('./controllers/posts.js');
+server.use('/posts', postsController);
 //anytime i go to anything inside posts, use my post controller
 
+server.get('/users', function(req,res) {
+	res.render('users/new');
+ })
 
-
+server.get('/posts', function(req,res) {
+	res.render('posts/new');
+ })
 
 
 //catchall routes, as last resort

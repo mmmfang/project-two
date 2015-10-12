@@ -1,32 +1,32 @@
-// var express = require('express'),
-// 	router = express.Router(),
-// 	User = require('../models/user.js');
+var express = require('express'),
+	router = express.Router(),
+	User = require('../models/user.js');
 
-// // router.get('/', function(req, res) {
-// // 	User.find({}, function(err, allUsers){
-// // 	res.render('users/index', {
-// // 		user: allUsers
-// // 	});
-// //  });
-// // }); 
+router.get('/', function(req, res) {
+	User.find({}, function(err, allUsers){
+	res.render('users/index', {
+		user: allUsers
+	});
+ });
+}); 
 
 // router.get('/', function(req,res) {
 // 	res.render('welcome');
 // });
 
 // //define routes for sign in router
-// router.get('/new', function(req, res) {
-// 	res.render('users/new');
-// }); //works
+router.get('/new', function(req, res) {
+	res.render('users/new');
+}); //works
 
-// router.post('/new', function(req,res) {
-// 	var newUser = User(req.body.user);
-// 	console.log(newUser); //works here but then redirect dont
-// 	//req.param is the user ID? if so get that and render it's name in welcome page, and redirect to its number
-// 	myCurrentUser = req.session.newUser;
-// 	res.redirect(301,'/welcome')
-	
-// })
+router.post('/new', function(req,res) {
+	var newUser = User(req.body.user);
+	console.log(newUser); //works here but then redirect dont
+	//req.param is the user ID? if so get that and render it's name in welcome page, and redirect to its number
+	myCurrentUser = newUser.username;
+	res.redirect(301,'/welcome')
+	//what wasn't working yesterday is newUser.save(function(err,user){	
+})
 
 //  router.get('/:id', function(req,res){
 //  	User.findById(req.params.id, function(err,user){
@@ -85,5 +85,6 @@
 // // 	})
 // // })
 
-// //export router object
-// module.exports = router;
+
+//export router object
+module.exports = router;

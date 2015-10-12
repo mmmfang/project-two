@@ -8,3 +8,14 @@ h1 {
 	font-family: 'Roboto', sans-serif;
 }
 
+form {
+	width: 50%;
+}
+
+.mainbutton {
+	box-shadow: 5px grey;
+}
+
+.post {
+	border: 2px solid black;
+}

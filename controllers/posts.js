@@ -1,9 +1,16 @@
 var express = require('express'),
 	router = express.Router(),
-	User = require('../models/posts.js');
+	Post = require('../models/post.js');
 
 //index
-router.get('/index', function(req, res) { 
+router.get('/', function(req, res) { 
+	Post.find({}, function (err, postsArray){
+		if (err) {
+			console.log(err);
+		} else {
+			res.render('/posts/index', {posts: postsArray});
+		}
+	})
 // 	User.find({}, function(err, allPosts){
 // 	if (err){ 
 // 		console.log("error showing all the posts");
@@ -30,13 +37,27 @@ router.get('/new', function(req, res) {
  //  })
 });
 
-// //define routes for sign in router
-// router.get('/new', function(req, res) {
-// 	res.render('users/new');
-// }); //works
-// // //CREATE - submitting the form to server
-// router.post('/', function(req,res){
 
+// //CREATE - submitting the form to server
+router.post('/', function(req,res){
+	var newPost = new Post(req.body.post);
+	console.log(newPost);
+
+	newPost.save(function(err,post){
+		if (err) {
+			console.log(err);
+		} else {
+			res.redirect(301,'/posts')
+		}
+	})
+});
+	// newPost.save(function(err, allPosts) {
+ //    if (err) {
+ //      console.log("New post not added");
+ //    } else {
+ //      res.redirect(302, '/');
+ //    }
+ //  })
 // });
  
 // // //show - READ

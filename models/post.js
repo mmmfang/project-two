@@ -5,8 +5,7 @@ var mongoose = require('mongoose'),
 var postSchema = Schema({
 	topic: {type: String, required: true},
 	author: {type: String, required: true},
-	content: {type: String, required: true},
-	upvotes: {type: Number}
+	body: {type: String, required: true}
 }, {collection: 'posts', strict:false});
 
 

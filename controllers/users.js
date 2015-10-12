@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 // //define routes for sign in router
 router.get('/new', function(req, res) {
 	res.render('users/new');
-}); //works
+}); //works again hallelujah
 
 router.post('/new', function(req,res) {
 	var newUser = User(req.body.user);

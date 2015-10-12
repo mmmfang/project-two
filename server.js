@@ -49,14 +49,10 @@ server.get('/test', function(req,res) {
 });
 
 server.get('/', function(req,res) {
-	res.render('homepage.html');
+	res.render('homepage');
 	// res.end();
 });
 
-server.get('/posts', function(req,res) {
-	res.render('post/new-post.html');
-	// res.end();
-});
 //utility routes
 
 server.use(function(req,res,next){

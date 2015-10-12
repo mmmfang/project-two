@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('/posts/index', {posts: postsArray});
+			res.render('posts/index', {posts: postsArray});
 		}
 	})
 // 	User.find({}, function(err, allPosts){
@@ -24,8 +24,8 @@ router.get('/', function(req, res) {
 
 // new - form is here
 router.get('/new', function(req, res) {
+	console.log("posts new is working,hopefully rendering too");
 	res.render('posts/new');
-console.log("posts new is working")
 	// var newPost = new Post(req.body.post);
 
 	// newPost.save(function(err, allPosts) {

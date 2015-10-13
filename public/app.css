@@ -33,6 +33,9 @@ label {
 	color:white;
 }
 
+.post {
+	border: 1px solid grey;
+}
 
 
 input[type=submit] {

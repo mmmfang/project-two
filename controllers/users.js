@@ -77,10 +77,25 @@ router.get('/:id', function(req,res){
 router.get('/', function(req, res) {
 	User.find({}, function(err, allUsers){
 	res.render('users/index', {
-		user: allUsers
+		users: allUsers
 	});
  });
 }); 
+
+
+// server.get('/welcome', function(req,res){
+// 	if(req.session.currentUser) {
+// 		res.render('welcome', {
+// 			currentUser: req.session.currentUser
+// 		});
+// 	} else {
+// 		res.redirect(301, '/users/login')
+// 	}
+// });
+
+// server.get('/welcome', function(req,res){
+// 	res.render('welcome');
+// })
 
 
 //To edit

@@ -21,20 +21,20 @@ router.get('/new', function(req, res) {
 //works   
 });
 
-var posts = [];
+var postArray = [];
 
 // //CREATE - submitting the form to server
 router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
 	console.log("new post is:", newPost);
 
-	posts.push(req.body.post);
+	postArray.push(req.body.post);
 
 	newPost.save(function(err,posts){
 		if (err) {
 			console.log("new post not added, try again");
 		} else {
-			res.redirect(301,'posts')
+			res.redirect(301,'posts');
 		}
 	})
 });

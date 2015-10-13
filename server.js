@@ -1,7 +1,7 @@
 var express = require('express'),
 	PORT	= process.env.PORT || 5432,
 	server	= express(),
-	MONGOURI = process.env.MONGOLAB_URI || "mongodb://localhost:27017",
+	MONGOURI = process.env.MONGOLAB_URI || "mongodb://localhost:27017/baubleBarForum",
 	dbname	= "baubleBarForum",
 	mongoose = require('mongoose');
 
@@ -13,13 +13,13 @@ var ejs = require('ejs'),
 	morgan=require('morgan'),
 	Schema = mongoose.Schema;
 
+//server needs to Use...
+server.set('views', './views');
+server.set('view engine', 'ejs'); 
 
 server.use(express.static("./public"));
 server.use(morgan('dev'));
 server.use(expressLayouts);
-
-server.set('views', './views');
-server.set('view engine', 'ejs'); 
 
 server.use(session({
 	secret: "whyohwhyarentyousaving",
@@ -91,10 +91,14 @@ server.use(function(req,res,next){
 //Mongoose starts
 mongoose.set('debug', false);
 mongoose.connect(MONGOURI + "/" + dbname);
-mongoose.connect('mongodb://localhost:27017/baubleBarForum', function(){
-	console.log("connected to local mongodb");
-});
-
+// mongoose.connect('mongodb://localhost:27017/baubleBarForum', function(){
+// 	console.log("connected to local mongodb");
+// });
+var db = mongoose.connection;
+        db.on('error', console.error.bind(console, 'connection error:'));
+        db.once('open', function callback() {
+            console.log('db connection open');
+        });
 server.listen(PORT, function() {
 	console.log("SERVER IS UP ON PORT:", PORT);
 });

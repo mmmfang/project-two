@@ -3,15 +3,6 @@ var express = require('express'),
 	User = require('../models/user.js');
 
 
-router.get('/', function(req, res) {
-	User.find({}, function(err, allUsers){
-	res.render('users/index', {
-		user: allUsers
-	});
- });
-}); 
-
-
 //////// SIGN IN ROUTE /////////
 router.get('/new', function(req, res) {
 	res.render('users/new');
@@ -20,13 +11,13 @@ router.get('/new', function(req, res) {
 router.post('/', function(req,res) {
 	var newUser = User(req.body.user);
 	console.log("new user is", newUser);
-//	console.log("id is", newUser._id); not needed, is grabbing ID
 
-	newUser.save(function(err,user){
+	newUser.save(function(err, user){
 		if (err) {
-			console.log("new user not added, error");
+			console.log("new user not added");
 		} else {
 			res.redirect(302, "/users/" + user._id);
+			// res.redirect(301, '/welcome');
 		}
 	})
 });
@@ -36,7 +27,7 @@ router.get('/login', function(req,res){
 	res.render('users/login');
 }) //works
 
-router.post('/login', function(req,res){
+router.post('/', function(req,res){
 	var attempt = req.body.user;
 
 	console.log(attempt);
@@ -78,10 +69,34 @@ router.get('/:id', function(req,res){
 // 	})
 // })
 // // })
-// // //To edit
-// // router.get('/:id/edit', function(req,res){
-// // 	})
-// // })
+
+router.get('/', function(req, res) {
+	User.find({}, function(err, allUsers){
+	res.render('users/index', {
+		user: allUsers
+	});
+ });
+}); 
+
+
+//To edit
+router.get('/:id/edit', function(req,res){
+	User.findOne({_id: req.session.currentUser._id}, function(err,currentUser){
+		if (err) { 
+			console.log("can't edit, u not logged in")
+		} else if (currentUser) {
+			if (currentUser._id === req.params.id) {
+				res.render('/edit', {user:currentUser});
+			} else {
+				res.redirect(302,'/users/' + currentUser._id + '/edit');	
+			}
+		} else {
+		  	delete res.session.currentUser;
+		  	res.redirect(302, '/session/new');
+		  }
+		
+	})
+});
 
 // // router.patch('/:id', function(req,res){
 // // 	})

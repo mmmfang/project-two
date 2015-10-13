@@ -56,19 +56,20 @@ router.post('/', function(req,res){
 // router.get('/:id', function(req, res) {
 // // 	Post.find({}, function(err, allPosts){
 // // 	res.render('posts/index', {
-// // 		user: allUsers
+// // 		user: allUsers, 
+// //		posts: allPosts
 // // 	});
 // //  });
 // }); 
 
 // // //edit
 // router.get('/:id/edit', function(req, res) {
-// // 	Post.findbyId(req.params.id, function(err, aSpecificPost){
+// // 	Post.findbyId(req.params.id, function(err, specifiedPost){
 // // 		if (err) {
-// // 			console.log("edit post error");
+// // 			console.log("error editing post");
 // // 		} else {
 // // 			res.render('posts/edit', {
-// // 				post: aSpecificPost
+// // 				post: specifiedPost
 // // 			});
 // // 		}
 // // 	}) 

@@ -1,21 +1,47 @@
-
 body {
 	background-color: floralwhite;
 }
 
-* {
-	size: 60px;
+h1, h3, h4, h5, form {
 	font-family: 'Roboto', sans-serif;
+	padding-left: 20px;
 }
 
-form {
-	width: 50%;
+
+h2, .italics {
+	font-family: Garamond, serif;
 }
 
+h1{
+	padding-top: 10px;
+
+	font-size: 40px;
+}
+
+.center {
+	text-align: center;
+}
+label {
+	padding: 5px;
+}
+
+.needs-padding-left {
+	padding-left: 20px;
+}
 .mainbutton {
-	box-shadow: 5px grey;
+	background-color:deeppink;
+	color:white;
 }
 
+
+
+input[type=submit] {
+	background-color: deeppink;
+	color: white;
+	border: 4px;
+	border-radius: 5px;
+
+}
 .post {
 	border: 2px solid black;
 }

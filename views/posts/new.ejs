@@ -1,13 +1,29 @@
-<h3>Post about jewelry</h3>
+<div class="needs-padding-left">
+<h3>Create a Topic!</h3>
+
 <form action="/posts" method="post">
+    <label>Topic</label>
+    <br/>
     <input  type="text"
             name="post[topic]"
-            placeholder="post title"> 
+            placeholder="post title">
+    <br/>
+
+    <label>Author Name
+     </label>
+    <br/>
     <input  type="text"
             name="post[author]"
             placeholder="post's author name">
-    <label>Write your post here</label>
+    <br/>
+
+    <label>Write your post below</label>
+    <br/>
     <textarea name="post[body]" rows="8" cols="40">
     </textarea>
-    <input type="button" name="submit" value="submit">
+    <br/>
+
+    <input type="submit" name="submit" value="submit">
 </form>
+
+</div>

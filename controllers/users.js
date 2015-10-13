@@ -7,21 +7,21 @@ var express = require('express'),
 //////// SIGN IN ROUTE /////////
 router.get('/new', function(req, res) {
 	res.render('users/new');
-}); //works again hallelujah
+}); //works 
 
 
 router.post('/', function(req,res) {
 	var newUser = User(req.body.user);
 	console.log("new user is", newUser);
 
-	req.session.currentUser = newUser.username;
+	req.session.currentUser = newUser.username; //works til here,not sure if saving
 
 	newUser.save(function(err, user){
 		if (err) {
 			console.log("new user not added");
 		} else {
 			// res.redirect(301, "users/" + user._id);
-			res.redirect(301, 'welcome');
+			res.redirect(301, 'users/welcome');
 		}
 	}) 
 });
@@ -54,16 +54,7 @@ router.get('/:id', function(req,res){
  	})
  })
 
-// router.get('/welcome', function(req, res) {
-// 	if (req.session.currentUser) {
-// 	res.render('welcome', {
-// 		currentUser: req.session.currentUser
-// 	});
-// 	} else {
-// 		res.redirect(301, '/users/login');
-// 	}
-// });
-
+// '/edit/:id'  User.findByreq.params.id
 
 
 // //To show all users
@@ -77,13 +68,14 @@ router.get('/:id', function(req,res){
 router.get('/', function(req, res) {
 	User.find({}, function(err, allUsers){
 	res.render('users/index', {
-		users: allUsers
+		users: allUsers,
+		posts: allPosts,
 	});
  });
 }); 
 
 
-// server.get('/welcome', function(req,res){
+// router.get('/welcome', function(req,res){
 // 	if(req.session.currentUser) {
 // 		res.render('welcome', {
 // 			currentUser: req.session.currentUser
@@ -93,7 +85,7 @@ router.get('/', function(req, res) {
 // 	}
 // });
 
-// server.get('/welcome', function(req,res){
+// router.get('/welcome', function(req,res){
 // 	res.render('welcome');
 // })
 

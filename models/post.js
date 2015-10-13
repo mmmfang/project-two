@@ -4,7 +4,9 @@ var mongoose = require('mongoose'),
 var postSchema = Schema({
 	topic: {type: String, required: true},
 	author: {type: String, required: true},
-	body: {type: String, required: true}
+	date: { type: Date, default: Date.now },
+	body: {type: String, required: true},
+	comment: [String]
 }, {collection: 'posts', strict:false});
 
 

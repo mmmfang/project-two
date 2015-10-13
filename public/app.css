@@ -29,12 +29,13 @@ label {
 	padding-left: 20px;
 }
 .mainbutton {
-	background-color:deeppink;
+	background-color:royalblue;
 	color:white;
 }
 
 .post {
 	border: 1px solid grey;
+	width: 75%;
 }
 
 

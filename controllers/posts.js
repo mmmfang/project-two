@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 			});
 		}
 	})
-}); 
+}); //works
 
 // new - form is here
 router.get('/new', function(req, res) {
@@ -21,7 +21,7 @@ router.get('/new', function(req, res) {
 //works   
 });
 
-var postArray = [];
+//for local storage var postArray = [];
 
 // //CREATE - submitting the form to server
 router.post('/', function(req,res){

@@ -18,15 +18,15 @@ router.get('/new', function(req, res) {
 }); //works again hallelujah
 
 router.post('/', function(req,res) {
-	var newUser = User(req.body);
+	var newUser = User(req.body.user);
 	console.log("new user is", newUser);
-
+//	console.log("id is", newUser._id); not needed, is grabbing ID
 
 	newUser.save(function(err,user){
 		if (err) {
 			console.log("new user not added, error");
 		} else {
-			res.redirect(302, '/' + user_id);
+			res.redirect(301, "/users/" + newUser._id);
 		}
 	})
 });

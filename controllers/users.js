@@ -26,7 +26,7 @@ router.post('/', function(req,res) {
 		if (err) {
 			console.log("new user not added, error");
 		} else {
-			res.redirect(301, "/users/" + newUser._id);
+			res.redirect(302, "/users/" + user._id);
 		}
 	})
 });
@@ -38,12 +38,12 @@ router.get('/login', function(req,res){
 
 router.post('/login', function(req,res){
 	var attempt = req.body.user;
+
 	console.log(attempt);
 	User.findOne({username: attempt.username}, function(err, user) {
 		console.log(user);
 		if (user && user.password=== attempt.password) {
 			req.session.currentUser = user.username;
-
 			res.redirect(301,"/welcome");
 		} else {
 			console.log("no user w that name");
@@ -51,6 +51,13 @@ router.post('/login', function(req,res){
 		}
 	});
 });
+
+// for singup
+router.get('/:id', function(req,res){
+ 	User.findById(req.params.id, function(err,user){
+		console.log(user);
+ 	})
+ })
 
 // router.get('/welcome', function(req, res) {
 // 	if (req.session.currentUser) {
@@ -62,11 +69,6 @@ router.post('/login', function(req,res){
 // 	}
 // });
 
-router.get('/:id', function(req,res){
- 	User.findById(req.params.id, function(err,user){
-		console.log(user);
- 	})
- })
 
 
 // //To show all users

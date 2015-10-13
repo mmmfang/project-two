@@ -68,6 +68,19 @@ server.use(function(req,res,next){
 	next();
 })
 
+server.get('/welcome', function(req,res){
+	if(req.session.currentUser) {
+		res.render('welcome', {
+			currentUser: req.session.currentUser
+		});
+	} else {
+		res.redirect(301, '/users/login')
+	}
+});
+
+server.get('/welcome', function(req,res){
+	res.render('welcome');
+})
 
 //catchall routes, as last resort
 server.use(function(req,res,next){

@@ -21,7 +21,7 @@ router.post('/', function(req,res) {
 			console.log("new user not added");
 		} else {
 			// res.redirect(301, "users/" + user._id);
-			res.redirect(301, 'users/welcome');
+			res.redirect(301, 'welcome');
 		}
 	}) 
 });

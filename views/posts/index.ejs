@@ -1,11 +1,18 @@
 <h3> Here will be all the posts, God willing </h3>
 
-<% posts.forEach(function(post, i) {  %>}
+<% posts.forEach(function(post, i) {  %>
 <div class="post">
-		<h4> <%= post.topic %> </h4>
-		<h5> <%= post.author %> </h5>
-		<p> <%= post.body %> </p>
-		<p> <%= post.date %> </p>
-		<a href="./comment" class="btn-default mainbutton"> Comment on this topic </a>
+	<div class="post-topic-top">
+		<h4>Topic: <%= post.topic %> </h4>
+	</div>
+		<h5> Posted by: <%= post.author %> </h5>
+		<div class="needs-padding-left">
+			<p> <%= post.body %> </p>
+			<p> <%= post.date %> </p>
+			<p> <%= post.comment %> </p>
+		</div>
+
+	<a href="./posts/comment" class="btn-default mainbutton needs-padding-left"> Comment on this topic </a>
+
 </div>
 <% }) %>

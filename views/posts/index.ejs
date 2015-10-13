@@ -1,9 +1,9 @@
 <h1> Here will be all the posts, God willing </h1>
 
-<% posts.forEach(function(post, i) { %>}
-	<div class="post">
+
+<% for (var i=0; i<allPosts.length; i++){  %>}
+<%=	var post = "Total post: " allPosts[i];	
 		<h4> <%= post.topic %> </h4>
 		<h5> by <%= post.author %> </h5>
 		<p> <%= post.body %> </p>
-	</div>
 <% }) %>

@@ -3,23 +3,27 @@ var express = require('express'),
 	User = require('../models/user.js');
 
 
+
 //////// SIGN IN ROUTE /////////
 router.get('/new', function(req, res) {
 	res.render('users/new');
 }); //works again hallelujah
 
+
 router.post('/', function(req,res) {
 	var newUser = User(req.body.user);
 	console.log("new user is", newUser);
+
+	req.session.currentUser = newUser.username;
 
 	newUser.save(function(err, user){
 		if (err) {
 			console.log("new user not added");
 		} else {
-			res.redirect(302, "/users/" + user._id);
-			// res.redirect(301, '/welcome');
+			// res.redirect(301, "users/" + user._id);
+			res.redirect(301, 'welcome');
 		}
-	})
+	}) 
 });
 
 ///////	LOGIN ROUTE ////
@@ -35,10 +39,10 @@ router.post('/', function(req,res){
 		console.log(user);
 		if (user && user.password=== attempt.password) {
 			req.session.currentUser = user.username;
-			res.redirect(301,"/welcome");
+			res.redirect(301,"welcome");
 		} else {
 			console.log("no user w that name");
-			res.redirect(301, "/users/login")
+			res.redirect(301, "users/login")
 		}
 	});
 });

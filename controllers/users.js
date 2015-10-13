@@ -2,6 +2,7 @@ var express = require('express'),
 	router = express.Router(),
 	User = require('../models/user.js');
 
+
 router.get('/', function(req, res) {
 	User.find({}, function(err, allUsers){
 	res.render('users/index', {
@@ -10,53 +11,40 @@ router.get('/', function(req, res) {
  });
 }); 
 
-// router.get('/', function(req,res) {
-// 	res.render('welcome');
-// });
 
-// //define routes for sign in router
+//////// SIGN IN ROUTE /////////
 router.get('/new', function(req, res) {
 	res.render('users/new');
 }); //works again hallelujah
 
-router.post('/new', function(req,res) {
-	var newUser = User(req.body.user);
-	console.log("newuser is", newUser);
-	//req.param is the user ID? if so get that and render it's name in welcome page, and redirect to its number
-	// myCurrentUser = newUser.username;
-	// res.redirect(301,'welcome')
-	req.session.currentUser = newUser.username;
-	//what wasn't working yesterday is n
+router.post('/', function(req,res) {
+	var newUser = User(req.body);
+	console.log("new user is", newUser);
+
+
 	newUser.save(function(err,user){
 		if (err) {
 			console.log("new user not added, error");
 		} else {
-			res.redirect(302, '/');
+			res.redirect(302, '/' + user_id);
 		}
 	})
 });
 
-//  router.get('/:id', function(req,res){
-//  	User.findById(req.params.id, function(err,user){
-// -		console.log(user);
-// +		console.log(err, user);
-//  	})
-//  })
-
-//route for login router
+///////	LOGIN ROUTE ////
 router.get('/login', function(req,res){
 	res.render('users/login');
-}) 
+}) //works
 
 router.post('/login', function(req,res){
-	console.log("login reqbodyuser", req.body.user);
 	var attempt = req.body.user;
+	console.log(attempt);
 	User.findOne({username: attempt.username}, function(err, user) {
 		console.log(user);
 		if (user && user.password=== attempt.password) {
 			req.session.currentUser = user.username;
 
-			res.redirect(301,"/index");
+			res.redirect(301,"/welcome");
 		} else {
 			console.log("no user w that name");
 			res.redirect(301, "/users/login")
@@ -73,6 +61,12 @@ router.post('/login', function(req,res){
 // 		res.redirect(301, '/users/login');
 // 	}
 // });
+
+router.get('/:id', function(req,res){
+ 	User.findById(req.params.id, function(err,user){
+		console.log(user);
+ 	})
+ })
 
 
 // //To show all users

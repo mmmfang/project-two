@@ -17,20 +17,21 @@ var ejs = require('ejs'),
 server.use(express.static("./public"));
 server.use(morgan('dev'));
 server.use(expressLayouts);
-server.use(methodOverride('_method'));
 
 server.set('views', './views');
 server.set('view engine', 'ejs'); 
 
 server.use(session({
-	secret: "bleepbloopbleep",
-	resave: false,
-	saveUninitialized: true
+	secret: "whyohwhyarentyousaving",
+	resave: true,
+	saveUninitialized: false
 }));
 
 server.use(bodyParser.urlencoded({
 	extended:true
 }));
+
+server.use(methodOverride('_method'));
 
 //routes to Controllers
 var usersController = require('./controllers/users.js');

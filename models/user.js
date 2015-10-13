@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 var userSchema = Schema({
 	username: {type: String, required: true},
 	password: {type: String, required: true}
-}, {collections: 'users', strict:false});
+}, {collection: 'users', strict:false});
 
 
 var User = mongoose.model("User", userSchema);

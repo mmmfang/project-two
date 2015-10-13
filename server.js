@@ -94,6 +94,7 @@ var db = mongoose.connection;
         db.once('open', function callback() {
             console.log('db connection open');
         });
+        
 server.listen(PORT, function() {
 	console.log("SERVER IS UP ON PORT:", PORT);
 });

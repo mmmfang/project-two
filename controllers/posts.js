@@ -7,6 +7,18 @@ var express = require('express'),
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
+router.get('/', function(req, res) { 
+	Post.find({}, function (err, allPosts){
+		if (err) {
+			console.log("error creating index w all posts");
+		} else {
+			res.render('posts/index', {
+				posts: allPosts
+			});
+		}
+	})
+}); 
+
 ////// NEW POST - new post form is here - this works
 router.get('/new', function(req, res) {
 	res.render('posts/new');
@@ -27,17 +39,7 @@ router.post('/', function(req,res){
 });
 
 /////INDEX - SHOW ALL POSTS - works
-router.get('/', function(req, res) { 
-	Post.find({}, function (err, allPosts){
-		if (err) {
-			console.log("error creating index w all posts");
-		} else {
-			res.render('posts/index', {
-				posts: allPosts
-			});
-		}
-	})
-}); 
+
 ///CURRENTLY TESTING COMMENTS SECTION
 
 ///// NEW COMMENT (which goes under posts)
@@ -46,18 +48,18 @@ router.get('/comment', function(req, res) {
 });
 
 //////CREATE NEW COMMENT - submitting the comment form to server
-router.post('/comment', function(req,res){
-	var newComment = new Comment(req.body.post.comment);
-	console.log("new comment on that post is:", newComment);
+// router.post('/comment', function(req,res){
+// 	var newComment = new Comment(req.body.post.comment);
+// 	console.log("new comment on that post is:", newComment);
 
-	newComment.save(function(err,comments){
-		if (err) {
-			console.log("new post not added, try again");
-		} else {
-			res.redirect(301,'index');
-		}
-	})
-});
+// 	newComment.save(function(err,comments){
+// 		if (err) {
+// 			console.log("new comment not added, try again");
+// 		} else {
+// 			res.redirect(301,'index');
+// 		}
+// 	})
+// });
 
 // router.get('/', function(req, res) { 
 // 	Post.find({}, function (err, allPosts){
@@ -82,6 +84,18 @@ router.get('/:id', function(req, res) {
 // 	});
 //  });
 }); 
+// //edit
+router.get('/:id/', function(req, res) {
+// 	Post.findbyId(req.params.id, function(err, specifiedPost){
+// 		if (err) {
+// 			console.log("error editing post");
+// 		} else {
+// 			res.render('posts/', {
+// 				post: specifiedPost
+// 			});
+// 		}
+// 	}) 
+});
 
 // //edit
 router.get('/:id/edit', function(req, res) {
@@ -104,7 +118,7 @@ router.patch('/:id', function(req, res) {
 // 		if (err) {
 // 			console.log("error patching post");
 // 		} else {
-// 			res.redirect(301, '/')
+// 			res.redirect(301, '/posts/'+ updatedPost._id)
 // 		}
 // 	})
 

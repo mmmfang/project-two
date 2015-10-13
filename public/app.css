@@ -57,6 +57,7 @@ div.post-topic-top {
 
 .comment {
 	border: 1px dotted skyblue;
+	background-color: grey;
 }
 
 input[type=submit] {

@@ -4,22 +4,15 @@ var express = require('express'),
 
 //index
 router.get('/', function(req, res) { 
-	Post.find({}, function (err, postsArray){
+	Post.find({}, function (err, allPosts){
 		if (err) {
-			console.log(err);
+			console.log("error creating index w all posts");
 		} else {
-			res.render('posts/index', {posts: postsArray});
+			res.render('posts/index', {
+				posts: allPosts
+			});
 		}
 	})
-// 	User.find({}, function(err, allPosts){
-// 	if (err){ 
-// 		console.log("error showing all the posts");
-// 	} else {
-// 	res.render('posts/index', {
-// 		posts: allPosts
-// 	});
-//  };
-// });
 }); 
 
 // new - form is here
@@ -41,7 +34,7 @@ router.post('/', function(req,res){
 		if (err) {
 			console.log("new post not added, try again");
 		} else {
-			res.redirect(301,'posts/new')
+			res.redirect(301,'posts')
 		}
 	})
 });

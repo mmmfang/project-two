@@ -7,17 +7,6 @@ var express = require('express'),
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-router.get('/', function(req, res) { 
-	Post.find({}, function (err, allPosts){
-		if (err) {
-			console.log("error creating index w all posts");
-		} else {
-			res.render('posts/index', {
-				posts: allPosts
-			});
-		}
-	})
-}); 
 
 ////// NEW POST - new post form is here - this works
 router.get('/new', function(req, res) {
@@ -38,14 +27,50 @@ router.post('/', function(req,res){
 	})
 });
 
-/////INDEX - SHOW ALL POSTS - works
 
-///CURRENTLY TESTING COMMENTS SECTION
+///// INDEX - SHOW ALL POSTS - works
+router.get('/', function(req, res) { 
+	Post.find({}, function (err, allPosts){
+		if (err) {
+			console.log("error creating index w all posts");
+		} else {
+			res.render('posts/index', {
+				posts: allPosts
+			});
+		}
+	})
+}); 
+
+//delete - DELETE
+router.delete('/:id', function(req, res) {
+	Post.findByIdAndRemove(req.params.id, function(err){
+		if(err) {
+			console.log("can't delete post, try again");
+		} else {
+			res.redirect(302, '/');
+		}
+	}) 
+});
+
+//delete
+
+// router.delete('/:id', function(req,res){
+// 	var postID= req.params.id;
+// 	console.log(postID);
+// 	Post.remove{_id:postID}, function(err,foundPost) {
+// 		if (err) {
+// 			console.log("can't delete");
+// 		} else {
+// 			res.redirect(302)
+// 		}
+// 	}
+// }) 
+///NEEDS MUCHO TESTING - COMMENTS SECTION
 
 ///// NEW COMMENT (which goes under posts)
 router.get('/comment', function(req, res) {
 	res.render('posts/comment');  
-});
+}); //the comment page loads but its not connected to anything
 
 //////CREATE NEW COMMENT - submitting the comment form to server
 // router.post('/comment', function(req,res){
@@ -60,6 +85,7 @@ router.get('/comment', function(req, res) {
 // 		}
 // 	})
 // });
+// END COMMENTS TESTING SECTION
 
 // router.get('/', function(req, res) { 
 // 	Post.find({}, function (err, allPosts){
@@ -76,68 +102,58 @@ router.get('/comment', function(req, res) {
 ///END COMMENTS SECTION
 
 
-// //show - READ - can this work for each indiv user???
-router.get('/:id', function(req, res) {
-// 	Post.find({}, function(err, allPosts){
-// 	res.render('posts/index', { 
-//		posts: allPosts
-// 	});
-//  });
-}); 
-// //edit
+//edit - get id first
 router.get('/:id/', function(req, res) {
-// 	Post.findbyId(req.params.id, function(err, specifiedPost){
-// 		if (err) {
-// 			console.log("error editing post");
-// 		} else {
-// 			res.render('posts/', {
-// 				post: specifiedPost
-// 			});
-// 		}
-// 	}) 
+	Post.findbyId(req.params.id, function(err, specifiedPost){
+		if (err) {
+			console.log("error getting id I think??");
+		} else {
+			res.render('posts', {
+				post: specifiedPost
+			});
+		}
+	}) 
 });
 
 // //edit
 router.get('/:id/edit', function(req, res) {
-// 	Post.findbyId(req.params.id, function(err, specifiedPost){
-// 		if (err) {
-// 			console.log("error editing post");
-// 		} else {
-// 			res.render('posts/edit', {
-// 				post: specifiedPost
-// 			});
-// 		}
-// 	}) 
+	Post.findbyId(req.params.id, function(err, specifiedPost){
+		if (err) {
+			console.log("error editing post");
+		} else {
+			res.render('posts/edit', {
+				post: specifiedPost
+			});
+		}
+	}) 
 });
 
 // //patch - UPDATE
 
 router.patch('/:id', function(req, res) {
-// 	var updatedPost = req.body.post;
-// 	Post.findByIdandUpdate(req.params.id, updatedPost, function(err, updatedPost){
-// 		if (err) {
-// 			console.log("error patching post");
-// 		} else {
-// 			res.redirect(301, '/posts/'+ updatedPost._id)
-// 		}
-// 	})
+	var changedPost = req.body.post;
+	Post.findByIdandUpdate(req.params.id, changedPost, function(err, updatedPost){
+		if (err) {
+			console.log("error patching post");
+		} else {
+			res.redirect(301, '/posts/'+ updatedPost._id)
+		}
+	})
 
-// 	User.find({}, function(err, allUsers){
-// 	res.render('users/index', {
-// 		user: allUsers
-// 	});
-//  });
 }); 
 
-// //delete - DELETE
-router.delete('/:id', function(req, res) {
-// 	Post.findByIdAndRemove(req.params.id, function(err){
-// 		if(err) {
-// 			console.log("can't delete post, try again");
-// 		} else {
-// 			res.redirect(302, '/');
-// 		}
-// 	}) 
+router.post('/', function (req, res) {
+ var changedPost = req.body.post;
+ var newPost = new Post(changedPost);
+ newPost.save(function (err, useAfter) {
+   if (err) {
+     console.log(err);
+   } else {
+     res.redirect(301, "/");
+   }
+ });
 });
+
+
 
 module.exports = router;

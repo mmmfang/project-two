@@ -4,7 +4,7 @@ var express = require('express'),
 
 
 
-//////// SIGN IN ROUTE /////////
+//////// SIGN UP ROUTE /////////
 router.get('/new', function(req, res) {
 	res.render('users/new');
 }); //works 
@@ -33,7 +33,6 @@ router.get('/login', function(req,res){
 
 router.post('/', function(req,res){
 	var attempt = req.body.user;
-
 	console.log(attempt);
 	User.findOne({username: attempt.username}, function(err, user) {
 		console.log(user);
@@ -56,7 +55,6 @@ router.get('/:id', function(req,res){
 
 // '/edit/:id'  User.findByreq.params.id
 
-
 // //To show all users
 // router.get('/:id', function(req,res){
 // 	User.findById(req.params.id, function(err,user){
@@ -65,15 +63,20 @@ router.get('/:id', function(req,res){
 // })
 // // })
 
+//SHOW ALL USERS
+
 router.get('/', function(req, res) {
 	User.find({}, function(err, allUsers){
-	res.render('users/index', {
-		users: allUsers,
-		posts: allPosts,
-	});
- });
-}); 
-
+		if (err) {
+			console.log("error creating index w all users");
+		} else {
+			res.render('/users/index',{
+				users:allUsers
+			});
+		}
+	})
+});
+	
 
 // router.get('/welcome', function(req,res){
 // 	if(req.session.currentUser) {

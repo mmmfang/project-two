@@ -1,7 +1,9 @@
-<h1>Here will have a list of forum users and their activity</h1>
+<h3>Render a list of users and their activity</h1>
 
 <% users.forEach(function(post, i) {  %>}
-<div class="user-listing">
-		<h4> <%= user.username %> </h4>
-</div>
+	<div class="user-listing">
+		<h4> 
+			<a href="/users/<%=user._id%>"> <%=user.username%> </a>
+		</h4>
+	</div>
 <% }) %>

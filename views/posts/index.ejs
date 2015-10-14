@@ -1,17 +1,25 @@
-<h3> Here will be all the posts, God willing </h3>
+<h3> Main Page - All Topics Listed, God willing </h3>
 
 <% posts.forEach(function(post, i) {  %>
-<div class="post">
-	<div class="post-topic-top">
+	<div class="post">
+		<div class="post-topic-top">
 		<h4>Topic: <%= post.topic %> </h4>
-	</div>
+		</div>
+		
 		<h5> Posted by: <%= post.author %> </h5>
 		<div class="needs-padding-left">
 			<p> <%= post.body %> </p>
 			<p> <%= post.date %> </p>
-	</div>
+		</div>
+
+		<form 	class="delete-button"
+				method="post"
+				action="/posts/<%=post._id%>?_method=DELETE" >
+			<input type="submit"	
+					value="Delete Post" >
+		</form>
 
 	<a href="./posts/comment" class="btn-default mainbutton needs-padding-left"> Comment on this topic </a>
 
-</div>
+	</div>
 <% }) %>

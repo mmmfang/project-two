@@ -1,26 +1,26 @@
 <div class="needs-padding-left">
 <h3>Edit Your Post</h3>
 
-<form action="/posts/<%= post._id%>?_method=PATCH" method="post">
+<form action="/posts/<%=post._id%>?_method=PATCH" method="post">
 
     <label>Post Title</label>
     <br/>
     <input  type="text"
             name="post[topic]"
-            value= "post.topic"
+            value= "<%=post.topic%>"
     <br/>
 
     <label>Your Nickname</label>
     <br/>
     <input  type="text"
             name="post[author]"
-            value = "post.author"
+            value = "<%=post.author%>"
     <br/>
 
     <label>Write your post below</label>
     <br/>
     <textarea   name="post[body]" 
-                value= "post.body"
+                value= "<%=post.body%>"
                 rows="8" cols="40">
     </textarea>
     <br/>

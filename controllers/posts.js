@@ -75,8 +75,8 @@ router.delete('/:id', function(req, res) {
 	}) 
 });
 
-//show each page - first I am getting its ID - do i need this???
-router.get('/:id/', function(req, res) {
+//SHOW EACH POST - works thank f---ing goodness
+router.get('/:id', function(req, res) {
 	Post.findById(req.params.id, function(err, specifiedPost){
 		if (err) {
 			console.log("error getting id I think??");
@@ -89,17 +89,6 @@ router.get('/:id/', function(req, res) {
 });
 
 
-// router.post'/:id', function(req, res) {
-// 	Post.findById(req.params.id, function(err, specifiedPost){
-// 		if (err) {
-// 			console.log("error getting id I think??");
-// 		} else {
-// 			res.render('posts/show', {
-// 				post: specifiedPost
-// 			});
-// 		}
-// 	}) 
-// });
 //EDIT (GET PART) - THIS WORKS
 router.get('/:id/edit', function(req, res) {
 	Post.findById(req.params.id, function(err, specifiedPost){
@@ -121,27 +110,27 @@ router.patch('/:id', function(req, res) {
 		if (err) {
 			console.log("error patching post");
 		} else {
-			res.redirect(301, '/');
+			// res.redirect(301, '/');
 			// console.log("updated!!!");
-			// res.redirect(302, '/'+ specifiedPost._id)
+			res.redirect(302, '/'+ specifiedPost._id)
 		}
 	})
 }); 
 
-// router.patch('/:id', function (req, res) {
-//  var changedPost = req.body.post;
-//  var newPost = new Post(changedPost);
-//  newPost.save(function (err, useAfter) {
-//    if (err) {
-//      console.log(err);
-//    } else {
-//      res.redirect(301, "/posts");
-//    }
-//  });
-// });
-
-
-
+router.post('/', function (req, res) {
+	var postOptions = req.body.post;
+	 	console.log("postOptions is ", postOptions);
+ 	var newPost = new Post(postOptions);
+ 		console.log("newPost is ", newPost);
+ 	
+ 	newPost.save(function(err, postafterDB) {
+   	if (err) {
+     console.log("updated post not added");
+    } else {
+     res.redirect(301, "/");
+   }
+ });
+});
 
 
 module.exports = router;

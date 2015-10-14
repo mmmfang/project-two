@@ -9,6 +9,20 @@ router.get('/new', function(req, res) {
 	res.render('users/new');
 }); //works 
 
+router.post('/', function(req,res){
+	var attempt = req.body.user;
+	console.log("attempt is ",attempt);
+	User.findOne({username: attempt.username}, function(err, user) {
+		console.log(user);
+		if (user && user.password=== attempt.password) {
+			req.session.currentUser = user.username;
+			res.redirect(301,"welcome");
+		} else {
+			console.log("no user w that name");
+			res.redirect(301, "users/login")
+		}
+	});
+});
 
 router.post('/', function(req,res) {
 	var newUser = User(req.body.user);
@@ -31,20 +45,7 @@ router.get('/login', function(req,res){
 	res.render('users/login');
 }) //works
 
-router.post('/', function(req,res){
-	var attempt = req.body.user;
-	console.log(attempt);
-	User.findOne({username: attempt.username}, function(err, user) {
-		console.log(user);
-		if (user && user.password=== attempt.password) {
-			req.session.currentUser = user.username;
-			res.redirect(301,"welcome");
-		} else {
-			console.log("no user w that name");
-			res.redirect(301, "users/login")
-		}
-	});
-});
+
 
 // for singup
 router.get('/:id', function(req,res){

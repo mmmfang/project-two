@@ -1,11 +1,13 @@
 	<div class="single-post">
 		<h4>Topic: <%= post.topic %> </h4>		
 		<h5> Posted by: <%= post.author %> </h5>
+		<div class="needs-padding-left">
 			<p> <%= post.body %> </p>
 			<p> <%= post.date %> </p>
 			<p> View Comments: <%= post.comment %> </p>
 
 		<a href= "/posts/<%=post._id%>/edit"> [Edit] </a>
+		</div>
 		<form 	class="delete-button"
 				method="post"
 				action="/posts/<%=post._id%>?_method=DELETE" >

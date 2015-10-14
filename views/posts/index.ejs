@@ -11,7 +11,12 @@
 			<p> <%= post.body %> </p>
 			<p> <%= post.date %> </p>
 		</div>
-
+		<form 	class="view-button"
+				method="post"
+				action="/posts/<%=post._id%>" >
+				<input	type="submit"	
+						value="View Post" >
+		</form>
 		<a href="./posts/comment" class="btn btn-primary  mainbutton"> Comment on this topic   </a>
 	
 		<a href= "/posts/<%=post._id%>/edit"> [Edit] </a>
@@ -20,7 +25,6 @@
 				action="/posts/<%=post._id%>?_method=DELETE" >
 				<input	type="submit"	
 						value="Delete Post" >
-
 		</form>
 
 

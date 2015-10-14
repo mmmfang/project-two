@@ -40,23 +40,13 @@ router.get('/', function(req, res) {
 	})
 }); 
 
-//DELETE //works
-router.delete('/:id', function(req, res) {
-	Post.findByIdAndRemove(req.params.id, function(err){
-		if(err) {
-			console.log("can't delete post, try again");
-		} else {
-			res.redirect(302, 'posts/index');
-		}
-	}) 
-});
 
 ///NEEDS MUCHO TESTING - COMMENTS SECTION
 
 ///// NEW COMMENT (which goes under posts)
-router.get('/comment', function(req, res) {
-	res.render('posts/comment');  
-}); //the comment page loads but its not connected to anything
+// router.get('/comment', function(req, res) {
+// 	res.render('posts/comment');  
+// }); //the comment page loads but its not connected to anything
 
 //////CREATE NEW COMMENT - submitting the comment form to server
 // router.post('/comment', function(req,res){
@@ -74,20 +64,43 @@ router.get('/comment', function(req, res) {
 // END COMMENTS TESTING SECTION
 
 
-//edit - first I am getting its ID - do i need this???
-// router.get('/:id/', function(req, res) {
-// 	Post.findbyId(req.params.id, function(err, specifiedPost){
+//DELETE //works
+router.delete('/:id', function(req, res) {
+	Post.findByIdAndRemove(req.params.id, function(err){
+		if(err) {
+			console.log("can't delete post, try again");
+		} else {
+			res.redirect(302, '/');
+		}
+	}) 
+});
+
+//show each page - first I am getting its ID - do i need this???
+router.get('/:id/', function(req, res) {
+	Post.findById(req.params.id, function(err, specifiedPost){
+		if (err) {
+			console.log("error getting id I think??");
+		} else {
+			res.render('posts/show', {
+				post: specifiedPost
+			});
+		}
+	}) 
+});
+
+
+// router.post'/:id', function(req, res) {
+// 	Post.findById(req.params.id, function(err, specifiedPost){
 // 		if (err) {
 // 			console.log("error getting id I think??");
 // 		} else {
-// 			res.render('posts', {
+// 			res.render('posts/show', {
 // 				post: specifiedPost
 // 			});
 // 		}
 // 	}) 
 // });
-
-//edit
+//EDIT (GET PART) - THIS WORKS
 router.get('/:id/edit', function(req, res) {
 	Post.findById(req.params.id, function(err, specifiedPost){
 		if (err) {
@@ -100,31 +113,34 @@ router.get('/:id/edit', function(req, res) {
 	}) 
 });
 
-// //patch - UPDATE
+//UPDATE POST (PATCH Part)
 
 router.patch('/:id', function(req, res) {
-	var changedPost = req.body.post;
-	Post.findByIdandUpdate(req.params.id, changedPost, function(err, updatedPost){
+	var postOptions = req.body.post;
+	Post.findByIdAndUpdate(req.params.id, postOptions, function(err, specifiedPost){
 		if (err) {
 			console.log("error patching post");
 		} else {
-			res.redirect(301, 'posts')
-			// res.redirect(301, '/posts/'+ updatedPost._id)
+			res.redirect(301, '/');
+			// console.log("updated!!!");
+			// res.redirect(302, '/'+ specifiedPost._id)
 		}
 	})
 }); 
 
-router.post('/', function (req, res) {
- var changedPost = req.body.post;
- var newPost = new Post(changedPost);
- newPost.save(function (err, useAfter) {
-   if (err) {
-     console.log(err);
-   } else {
-     res.redirect(301, "/");
-   }
- });
-});
+// router.patch('/:id', function (req, res) {
+//  var changedPost = req.body.post;
+//  var newPost = new Post(changedPost);
+//  newPost.save(function (err, useAfter) {
+//    if (err) {
+//      console.log(err);
+//    } else {
+//      res.redirect(301, "/posts");
+//    }
+//  });
+// });
+
+
 
 
 

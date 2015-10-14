@@ -65,7 +65,7 @@ router.get('/:id', function(req,res){
 
 //SHOW ALL USERS
 
-router.get('/', function(req, res) {
+router.get('/index', function(req, res) {
 	User.find({}, function(err, allUsers){
 		if (err) {
 			console.log("error creating index w all users");

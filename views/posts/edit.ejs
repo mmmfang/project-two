@@ -1,7 +1,7 @@
 <div class="needs-padding-left">
 <h3>Edit Your Post</h3>
 
-<form action="/posts/<%=post._id%>?_method=PATCH" method="post">
+<form action="posts/<%= post._id %>?_method=PATCH" method="post">
 
     <label>Post Title</label>
     <br/>
@@ -24,5 +24,6 @@
                 rows="8" cols="40"> <%=post.body%></textarea>
     <br/>
     <input type="button" name="submit" value="submit">
+
 </form>
 </div>

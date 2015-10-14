@@ -71,7 +71,7 @@ router.get('/', function(req, res) {
 			console.log("error creating index w all users");
 		} else {
 			res.render('/users/index',{
-				users:allUsers
+				users: allUsers
 			});
 		}
 	})

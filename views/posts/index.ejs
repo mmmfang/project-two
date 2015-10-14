@@ -12,14 +12,18 @@
 			<p> <%= post.date %> </p>
 		</div>
 
+		<a href="./posts/comment" class="btn btn-primary  mainbutton"> Comment on this topic   </a>
+	
+		<a href= "/posts/<%=post._id%>/edit"> [Edit] </a>
 		<form 	class="delete-button"
 				method="post"
 				action="/posts/<%=post._id%>?_method=DELETE" >
-			<input type="submit"	
-					value="Delete Post" >
+				<input	type="submit"	
+						value="Delete Post" >
+
 		</form>
 
-	<a href="./posts/comment" class="btn-default mainbutton needs-padding-left"> Comment on this topic </a>
+
 
 	</div>
 <% }) %>

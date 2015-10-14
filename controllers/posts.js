@@ -18,7 +18,7 @@ router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
 	console.log("new post is:", newPost);
 
-	newPost.save(function(err,posts){
+	newPost.save(function(err,post){
 		if (err) {
 			console.log("new post not added, try again");
 		} else {
@@ -26,7 +26,6 @@ router.post('/', function(req,res){
 		}
 	})
 });
-
 
 ///// INDEX - SHOW ALL POSTS - works
 router.get('/', function(req, res) { 
@@ -41,30 +40,17 @@ router.get('/', function(req, res) {
 	})
 }); 
 
-//delete - DELETE
+//DELETE //works
 router.delete('/:id', function(req, res) {
 	Post.findByIdAndRemove(req.params.id, function(err){
 		if(err) {
 			console.log("can't delete post, try again");
 		} else {
-			res.redirect(302, '/');
+			res.redirect(302, 'posts/index');
 		}
 	}) 
 });
 
-//delete
-
-// router.delete('/:id', function(req,res){
-// 	var postID= req.params.id;
-// 	console.log(postID);
-// 	Post.remove{_id:postID}, function(err,foundPost) {
-// 		if (err) {
-// 			console.log("can't delete");
-// 		} else {
-// 			res.redirect(302)
-// 		}
-// 	}
-// }) 
 ///NEEDS MUCHO TESTING - COMMENTS SECTION
 
 ///// NEW COMMENT (which goes under posts)
@@ -87,37 +73,23 @@ router.get('/comment', function(req, res) {
 // });
 // END COMMENTS TESTING SECTION
 
-// router.get('/', function(req, res) { 
-// 	Post.find({}, function (err, allPosts){
+
+//edit - first I am getting its ID - do i need this???
+// router.get('/:id/', function(req, res) {
+// 	Post.findbyId(req.params.id, function(err, specifiedPost){
 // 		if (err) {
-// 			console.log("error creating index w all posts and comments");
+// 			console.log("error getting id I think??");
 // 		} else {
-// 			res.render('posts/index', {
-// 				posts: allPosts,
+// 			res.render('posts', {
+// 				post: specifiedPost
 // 			});
 // 		}
-// 	})
+// 	}) 
 // });
 
-///END COMMENTS SECTION
-
-
-//edit - get id first
-router.get('/:id/', function(req, res) {
-	Post.findbyId(req.params.id, function(err, specifiedPost){
-		if (err) {
-			console.log("error getting id I think??");
-		} else {
-			res.render('posts', {
-				post: specifiedPost
-			});
-		}
-	}) 
-});
-
-// //edit
+//edit
 router.get('/:id/edit', function(req, res) {
-	Post.findbyId(req.params.id, function(err, specifiedPost){
+	Post.findById(req.params.id, function(err, specifiedPost){
 		if (err) {
 			console.log("error editing post");
 		} else {
@@ -136,10 +108,10 @@ router.patch('/:id', function(req, res) {
 		if (err) {
 			console.log("error patching post");
 		} else {
-			res.redirect(301, '/posts/'+ updatedPost._id)
+			res.redirect(301, 'posts')
+			// res.redirect(301, '/posts/'+ updatedPost._id)
 		}
 	})
-
 }); 
 
 router.post('/', function (req, res) {

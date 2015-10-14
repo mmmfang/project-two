@@ -30,8 +30,10 @@ label {
 }
 
 .mainbutton {
-	background-color:magenta;
+	background-color:indigo;
 	color:white;
+	margin-bottom: 5px;
+	margin-left: 20px;
 }
 
 .post {
@@ -49,19 +51,16 @@ img {
 }
 
 div.post-topic-top {
-	background-color: indigo;
+	background-color: black;
 	color: white;
 	border: 1px solid white;
 	padding-left:0px;
 }
 
-button.delete-button {
-	
-	color: white;
-}
 .comment {
 	border: 1px dotted skyblue;
 	background-color: grey;
+	display:inline-block;
 }
 
 input[type=submit] {
@@ -70,3 +69,4 @@ input[type=submit] {
 	border: 4px;
 	border-radius: 5px;
 }
+

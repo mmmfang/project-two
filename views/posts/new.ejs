@@ -8,7 +8,7 @@
             name="post[topic]"
             placeholder="post title">
     <br/>
-    
+
     <label>Author Name
      </label>
     <br/>
@@ -18,13 +18,16 @@
     <br/>
     <br/>
 
+<% post[author]= %>  <p><%=currentUser %> </p>
+<p>Post by: value="<%req.session.currentUser" </b>
+
     <label>Write your topic post below</label>
     <br/>
     <textarea name="post[body]" rows="4" cols="50">
     </textarea>
     <br/>
 
-    <input type="submit" name="submit" value="submit">
+    <input type="submit"  value="submit">
 </form>
 
 </div>

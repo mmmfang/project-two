@@ -4,6 +4,7 @@
 	<div class="post">
 		<div class="post-topic-top">
 		<h4>Topic: <%= post.topic %> </h4>
+		 <p class="right"> Number of Comments: <%= post.comment.length%>	Number of Upvotes: </p>
 		</div>
 		
 		<h5> by <a href=#> <%=post.author%></a> </h5>
@@ -15,9 +16,8 @@
 		<form 	class="view-button want-inline"
 				method="get"
 				action="/posts/<%=post._id%>" >
-	
-				<input	type="submit"	
-						value="View Post" >
+			<input	type="submit"	
+					value="View Post" >
 		</form>
 
 		<a href="/posts/<%=post._id%>/comment" class="btn mainbutton want-inline"> Comment on this topic</a>

@@ -88,6 +88,27 @@ router.patch('/:id', function(req, res) {
 	})
 }); 
 
+//TESTING COMMENTS
+
+router.get('/:id/comment', function (req, res) {
+	res.render('posts/comment');
+	});
+
+
+// router.post('/:id/comment', function (req, res) {
+//   var newComment = req.body.post;
+
+//   newComment.comment.username = req.session.currentUser;
+//   newComment.comment.date = Date.now();
+
+//   Post.update(
+//     { _id: req.params.id },
+//     { $push: newComment },
+//     function (){
+//     (res.redirect('/:id')
+//     );
+//   });
+// });
 
 ///NEEDS MUCHO TESTING - COMMENTS SECTION
 

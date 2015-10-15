@@ -4,7 +4,10 @@
 		<div class="needs-padding-left">
 			<p> <%= post.body %> </p>
 			<p> <%= post.date %> </p>
-			<p> View Comments: <%= post.comment %> </p>
+		
+		<% posts.forEach(function(post, i) {  %
+			<p> View Comments: <%= post.comment %> </p>	
+		<% }) %>
 
 			<a href= "/posts/<%=post._id%>/edit" 
 			class="btn btn-default editbutton want-inline"> 
@@ -15,5 +18,11 @@
 				action="/posts/<%=post._id%>?_method=DELETE" >
 				<input	type="submit"	
 						value="Delete Post" >
+			</form>
+
+			<form action="/posts/<%=post._id%>">
+				<input type="submit" value="Upvote">
+			</form>
+
 		</div>
 	</div>

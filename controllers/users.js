@@ -8,6 +8,22 @@ router.get('/new', function(req, res) {
 	res.render('users/new');
 }); //works 
 
+///AFTER GOING THRU SIGNUP PAGE
+router.post('/', function(req,res) {
+	var newUser = User(req.body.user);
+	console.log("new user is", newUser);
+
+	req.session.currentUser = newUser.username; 
+
+	newUser.save(function(err, user){
+		if (err) {
+			console.log("new user not added");
+		} else {
+			// res.redirect(301, "users/" + user._id);
+			res.redirect(301, 'welcome');
+		}
+	}) 
+});
 
 ///////	LOGIN ROUTE ////
 router.get('/login', function(req,res){
@@ -28,24 +44,6 @@ router.post('/', function(req,res){
 			res.redirect(301, "users/new")
 		}
 	});
-});
-
-
-///AFTER GOING THRU SIGNUP PAGE
-router.post('/', function(req,res) {
-	var newUser = User(req.body.user);
-	console.log("new user is", newUser);
-
-	req.session.currentUser = newUser.username; 
-
-	newUser.save(function(err, user){
-		if (err) {
-			console.log("new user not added");
-		} else {
-			// res.redirect(301, "users/" + user._id);
-			res.redirect(301, 'welcome');
-		}
-	}) 
 });
 
 //BELOW IS CONFUSINGGG

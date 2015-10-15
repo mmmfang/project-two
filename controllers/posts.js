@@ -12,9 +12,7 @@ var express = require('express'),
 router.get('/new', function(req, res) {	
 	res.render('posts/new', {
 	});
-
 });
-
 
 ////// CREATE POST- submitting the form to server - this works
 router.post('/', function(req,res){
@@ -89,22 +87,24 @@ router.patch('/:id', function(req, res) {
 	})
 }); 
 
-//TESTING COMMENTS
+//TESTING COMMENTS : findByIdAndUpdate(id, update, callback)
+
+router.patch('/comment/:id', function(req, res) {
+	var newComment = req.body.post.comment;
+	console.log("new comment is: ", newComment);
+	Post.findByIdAndUpdate(req.params.id, {$push: {comment: [newComment]}}, function (err, callback) {
+		if (err) {
+			console.log("error adding commment");
+		} else {
+			res.redirect(301, '/posts/:id');
+			console.log("comments be posting...yeahhh");
+		}
+	})
+}); 
 
 
-router.post('/:id', function (req, res) {
-  var newComment = req.body.post;
-  console.log("new comment is" newComment);
-  newComment.comment.username = req.session.currentUser;
   // newComment.comment.date = Date.now();
 
- Post.update(
-    { _id: req.params.id },
-    { $push: newComment },
-    function (){
- 	   res.redirect('/:id');
-  });
-});
 
 ///NEEDS MUCHO TESTING - COMMENTS SECTION
 

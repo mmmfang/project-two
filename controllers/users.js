@@ -52,22 +52,22 @@ router.post('/', function(req,res){
 
 
 // //To show all users and their posts
-router.get('/:id', function(req,res){
-	var user= req.params.username;
+// router.get('/:id', function(req,res){
+// 	var user= req.params.username;
 
-	Post.find({
-		user: authorName
-	}, function(err, authorPosts) {
-		if (err) {
-			console.log("err getting all author posts")
-		} else {
-			res.render('/posts', {
-				user: authorName,
-				posts: authorPosts
-			})
-		}
-	})
-})
+// 	Post.find({
+// 		user: authorName
+// 	}, function(err, authorPosts) {
+// 		if (err) {
+// 			console.log("err getting all author posts")
+// 		} else {
+// 			res.render('/posts', {
+// 				user: authorName,
+// 				posts: authorPosts
+// 			})
+// 		}
+// 	})
+// })
 
 //SHOW ALL USERS
 

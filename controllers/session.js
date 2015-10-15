@@ -23,7 +23,7 @@ router.post('/', function (req, res) {
     }
   });
 });
-
+//When clicking on the logout button..use vanilla JS to delete
 router.delete('/', function (req, res) {
   delete req.session.userId;
 

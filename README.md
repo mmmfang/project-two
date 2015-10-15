@@ -1,18 +1,25 @@
 #Project Two - Mae
 
-To Do: write a README here
+#BUILD A FORUM - CRUD APP
 
-This project is building a forum page for an existing website, BaubleBar. It's purpose is to have a place for BaubleBar enthusiasts aka fashion jewelry aficionados to discuss their thoughts on the products and suggest new products or old products they want brought back.
+This project builds a forum page for an existing website, BaubleBar. The purpose of the forum is to create a social online community for BaubleBar enthusiasts aka stylin fashion jewelry aficionados who can discuss their thoughts on products, get advice, suggest new products/ old products they want brought back and much more.
 
-Early victories:
-Learning the model view controller method. It makes a lot of sense to separate out the various routes and mongoose parts of this app. 
+#App features listed
+(which I learned through this project, hooray!)
+
+Model view controller method. It makes a lot of sense to separate out the various routes and mongoose parts of this app.
+NPM - used EJS Layouts and really enjoyed how easy it was to use 
+Method Override - 
+#Styling features
 Using Bootstrap made it easy to make a nav bar.
 Basing this on an existing site guided my color and font decisions. 
-Liking my forum topic made thinking about the content to be posted, fun.
-I liked EJS layouts and how easy it is to use!
+Actually liking the topic of my forum topic made thinking about the content to be posted
 I also liked favicon, how fun.
 
-After days (DAYS?!??) my pages started rendering.
+Photo Credits
+Background photo on home page from Mashable
+Photo on welcome page from honestlywtf.com
 
-Early challenges: 
-Practically every part of this is very challenging. CHanging one thing often leads to something else breaking. At this point, I can't get past the C phase because things are not redirecting/saving to my MongoDB, which means I can't get to the RUD parts (insert anxious emoji)
+
+Challenges faced during this project 
+Practically every part of this is very challenging. I hadn't succesfully made a CRUD app before so most of this was pretty new. Changing one thing often led to something else breaking. Since I didn't fully understand many concepts, such as routing, if my database was succesfully posting to the database, and what was going on in general...twas difficult, but through my numerous mistakes I learned! I learned about RESTFUL routes. Small mistakes, such as a missing ">" or mislabeling an input caused me many hours of consternation.

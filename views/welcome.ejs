@@ -1,11 +1,11 @@
-<h2> <em> <%= currentUser%></em>, welcome to the BaubleBar forum </h2>
-<br/>
-<h4><a href="/posts">Click here</a> to enter the main Forum page and see all the posts.</h4>
-<h4><a href="/posts/new">Click here</a> to create a new topic. </h4>
+<div class=center>
 
-<form action="/session?_method=DELETE" method="POST">
-  <input type="submit" value="Sign Out">
-</form>
+	<h1 id="welcome-name"> <em> <%= currentUser%></em>, </h1>
+	<h2>welcome to the BaubleBar Forum </h2>
+	<br/>
+	<h4><a href="/posts">Click here</a> to see all posts on the main page.</h4>
+	<h4><a href="/posts/new">Click here</a> to create a new topic. </h4>
 
-<img src="http://cdn.honestlywtf.com/wp-content/uploads/2013/05/baublebar2.jpg" />
+</div>
+<img id="welcome-pic" src="images/baublebar2.jpg" />
 </p>

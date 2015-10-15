@@ -39,7 +39,7 @@ router.get('/', function(req, res) {
 		} else {
 			res.render('posts/index', {
 				posts: allPosts,
-				currentUser: req.session.currentUser;
+				currentUser: req.session.currentUser
 			});
 		}
 	})

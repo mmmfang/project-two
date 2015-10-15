@@ -12,11 +12,25 @@ h2, .italics {
 	padding-left: 20px
 }
 
+h1#welcome-name {
+	font: 60px;
+	font-family: Garamond, serif;
+}
+
 h1{
 	padding-top: 10px;
 	font-size: 40px;
 }
 
+.homepage {
+	background-image: url("images/baublebar-bg.jpg");
+}
+
+.whitetext {
+	color: white;
+	text-shadow: 1px 1px black;
+
+}
 .center {
 	text-align: center;
 }
@@ -37,6 +51,11 @@ label {
 	margin-left: 20px;
 }
 
+#welcome-pic {
+	max-width: 100%;
+	margin: 0px;
+}
+
 .post {
 	border: 2px solid grey;
 	width: 60%;
@@ -45,10 +64,6 @@ label {
 	border-radius: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-}
-
-img {
-	padding-left: 20px
 }
 
 div.post-topic-top {

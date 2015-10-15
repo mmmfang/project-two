@@ -19,7 +19,7 @@ router.get('/new', function(req, res) {
 router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
 	newPost.author =req.session.currentUser; 
-	console.log("req.session.currentUser is ", req.session.currentUser);
+	console.log("newPost.author is ", req.session.currentUser);
 		// user: req.session.username;
 		// body: req.body.body;
 	console.log("new post is:", newPost);		//at this moment, works till here

@@ -18,7 +18,7 @@ router.get('/new', function(req, res) {
 router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
 	var postAuthor =req.session.currentUser; 
-	console.log(postAuthor);
+	console.log("req.session.currentUser is ", postAuthor);
 	// user: req.session.username;
 		// body: req.body.body;
 	console.log("new post is:", newPost);		

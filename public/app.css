@@ -44,12 +44,21 @@ label {
 }
 
 .mainbutton {
-	background-color:indigo;
+	background-color:teal;
 	color:white;
 	margin-top: 5px;
 	margin-bottom: 5px;
 	margin-left: 20px;
 }
+
+.editbutton {
+	background-color:green;
+	color:white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 20px;
+}
+.editbutton
 
 #welcome-pic {
 	max-width: 100%;

@@ -114,7 +114,7 @@ var db = mongoose.connection;
         });
         
 server.listen(PORT, function() {
-	console.log("SERVER IS UP ON PORT:", PORT);
+	console.log("SERVER IS UP ON PORT", PORT);
 });
 
 

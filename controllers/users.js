@@ -3,7 +3,6 @@ var express = require('express'),
 	User = require('../models/user.js');
 
 
-
 //////// SIGN UP ROUTE /////////
 router.get('/new', function(req, res) {
 	res.render('users/new');

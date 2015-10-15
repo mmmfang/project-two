@@ -17,7 +17,9 @@ router.get('/new', function(req, res) {
 ////// CREATE POST- submitting the form to server - this works
 router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
-		// user: req.session.username;
+	var postAuthor =req.session.currentUser; 
+	console.log(postAuthor);
+	// user: req.session.username;
 		// body: req.body.body;
 	console.log("new post is:", newPost);		
 	newPost.save(function(err,post){
@@ -36,7 +38,8 @@ router.get('/', function(req, res) {
 			console.log("error creating index w all posts");
 		} else {
 			res.render('posts/index', {
-				posts: allPosts
+				posts: allPosts,
+				currentUser: req.session.currentUser;
 			});
 		}
 	})

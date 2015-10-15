@@ -12,14 +12,11 @@
     <label>Author Name
      </label>
     <br/>
-    <input  type="text"
+    <input  type="text hidden"
             name="post[author]"
-            placeholder="post's author name">
+            value=<% post.author%>
     <br/>
     <br/>
-
-<% post[author]= %>  <p><%=currentUser %> </p>
-<p>Post by: value="<%req.session.currentUser" </b>
 
     <label>Write your topic post below</label>
     <br/>

@@ -9,17 +9,18 @@ var express = require('express'),
 
 
 ////// NEW POST - new post form is here - this works
-router.get('/new', function(req, res) {
+router.get('/new', function(req, res) {	
 	res.render('posts/new', {
 	});
+
 });
 
 
 ////// CREATE POST- submitting the form to server - this works
 router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
-	var postAuthor =req.session.currentUser; 
-	console.log("req.session.currentUser is ", postAuthor);
+	newPost.author =req.session.currentUser; 
+	console.log("req.session.currentUser is ", newPost.author);
 		// user: req.session.username;
 		// body: req.body.body;
 	console.log("new post is:", newPost);		//at this moment, works till here
@@ -90,25 +91,20 @@ router.patch('/:id', function(req, res) {
 
 //TESTING COMMENTS
 
-router.get('/:id/comment', function (req, res) {
-	res.render('posts/comment');
-	});
 
+router.post('/:id', function (req, res) {
+  var newComment = req.body.post;
+  console.log("new comment is" newComment);
+  newComment.comment.username = req.session.currentUser;
+  // newComment.comment.date = Date.now();
 
-// router.post('/:id/comment', function (req, res) {
-//   var newComment = req.body.post;
-
-//   newComment.comment.username = req.session.currentUser;
-//   newComment.comment.date = Date.now();
-
-//   Post.update(
-//     { _id: req.params.id },
-//     { $push: newComment },
-//     function (){
-//     (res.redirect('/:id')
-//     );
-//   });
-// });
+ Post.update(
+    { _id: req.params.id },
+    { $push: newComment },
+    function (){
+ 	   res.redirect('/:id');
+  });
+});
 
 ///NEEDS MUCHO TESTING - COMMENTS SECTION
 

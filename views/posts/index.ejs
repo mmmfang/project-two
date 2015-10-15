@@ -4,7 +4,7 @@
 	<div class="post">
 		<div class="post-topic-top">
 		<h4>Topic: <%= post.topic %> </h4>
-		 <p class="right"> Number of Comments: <%= post.comment.length%>	Number of Upvotes: </p>
+		 <p class="right"> Number of Comments: <%= post.comment.length%>	Number of Upvotes: <%=post.upvotes%></p>
 		</div>
 		
 		<h5> by <a href=#> <%=post.author%></a> </h5>
@@ -20,8 +20,6 @@
 					value="View Post" >
 		</form>
 
-		<a href="/posts/<%=post._id%>/comment" class="btn mainbutton want-inline"> Comment on this topic</a>
-		
 		<a href= "/posts/<%=post._id%>/edit" class="btn btn-default editbutton want-inline"> Click to edit post</a>
 
 		<form 	class="delete-button want-inline"

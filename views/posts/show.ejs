@@ -30,7 +30,7 @@
 
 	<form action="/posts/comment/<%=post._id%>?_method=PATCH" method="post">
 	 <br/>
-    	<textarea   name="post[comment][]" 
+    	<textarea   name="post[comment]" 
             		rows="4" cols="60">
     	</textarea>
      <br/>
@@ -38,9 +38,11 @@
      <input type="submit" value="submit">
 	</form>
 
+<p>View Comments</p>
+         <% for (var i = 0; i < post.comment.length; i++) { %>
+              <p><%= post.comment[i].content %></p>
+              <p><%= post.comment[i].user %></p>
+         <% } %>
 
-
-	<% for (var i = 0; i < post.comment.length; i++) { %>
-             <p><%= post.comment[i] %></p>
 
 	</div>

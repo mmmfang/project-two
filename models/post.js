@@ -6,9 +6,10 @@ var postSchema = Schema({
 	author: {type: String, required: true},
 	date: { type: Date, default: Date.now },
 	body: {type: String, required: true},
-	comment: [{
-		author:String,
-		comment: String}],
+	comment: [ {
+    		content: String,
+    		user: String
+  			} ],
 	votes: {type: Number, default: 0}
 }, {collection: 'posts', strict:false});
 

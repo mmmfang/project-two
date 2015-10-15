@@ -11,6 +11,7 @@ var express = require('express'),
 ////// NEW POST - new post form is here - this works
 router.get('/new', function(req, res) {	
 	res.render('posts/new', {
+		author: req.session.currentUser
 	});
 });
 
@@ -90,9 +91,9 @@ router.patch('/:id', function(req, res) {
 //TESTING COMMENTS : findByIdAndUpdate(id, update, callback)
 
 router.patch('/comment/:id', function(req, res) {
-	var newComment = req.body.post.comment;
-	console.log("new comment is: ", newComment);
-	Post.findByIdAndUpdate(req.params.id, {$push: {comment: [newComment]}}, function (err, callback) {
+	var addComment = {$push: {comment: {content: req.body.post.comment, user: req.session.currentUser}}};
+	console.log("new comment is: ", addComment);
+	Post.findByIdAndUpdate(req.params.id, addComment, function (err, callback) {
 		if (err) {
 			console.log("error adding commment");
 		} else {

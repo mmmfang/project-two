@@ -101,6 +101,12 @@ router.get('/:id/edit', function(req,res){
 	})
 });
 
+//To logout
+router.get('/logout', function(req, res) {
+	req.session.currentUser = '';
+	res.redirect(302,  '/')
+})
+
 
 
 //export router object

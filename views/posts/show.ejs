@@ -6,12 +6,14 @@
 			<p> <%= post.date %> </p>
 			<p> View Comments: <%= post.comment %> </p>
 
-		<a href= "/posts/<%=post._id%>/edit"> [Edit] </a>
-		</div>
-		<form 	class="delete-button"
+			<a href= "/posts/<%=post._id%>/edit" 
+			class="btn btn-default editbutton want-inline"> 
+			Edit post</a>
+
+			<form 	class="delete-button"
 				method="post"
 				action="/posts/<%=post._id%>?_method=DELETE" >
 				<input	type="submit"	
 						value="Delete Post" >
-
+		</div>
 	</div>

@@ -1,4 +1,4 @@
-<h3> The Watering Hole - All Topics Here :) </h3>
+<h2> The Watering Hole - All Topics Here :) </h2>
 
 <% posts.forEach(function(post, i) {  %>
 	<div class="post">
@@ -20,7 +20,7 @@
 						value="View Post" >
 		</form>
 
-		<a href="/posts/comment" class="btn mainbutton want-inline"> Comment on this topic</a>
+		<a href="/posts/<%=post._id%>/comment" class="btn mainbutton want-inline"> Comment on this topic</a>
 		
 		<a href= "/posts/<%=post._id%>/edit" class="btn btn-default editbutton want-inline"> Click to edit post</a>
 
@@ -35,3 +35,7 @@
 
 	</div>
 <% }) %>
+
+<form action="/session?_method=DELETE" method="POST">
+  <input type="submit" value="Log Out">
+</form>

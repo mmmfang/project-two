@@ -8,13 +8,12 @@ This project builds a forum page for an existing website, BaubleBar. The purpose
 (which I learned through this project, hooray!)
 
 Model view controller method. It makes a lot of sense to separate out the various routes and mongoose parts of this app.
-NPM - used EJS Layouts and really enjoyed how easy it was to use 
+NPM - used EJS Layouts and liked how easy it was to use 
 Method Override - 
 #Styling features
 Using Bootstrap made it easy to make a nav bar.
-Basing this on an existing site guided my color and font decisions. 
 Actually liking the topic of my forum topic made thinking about the content to be posted
-I also liked favicon, how fun.
+I also liked favicon.
 
 Photo Credits
 Background photo on home page from Mashable

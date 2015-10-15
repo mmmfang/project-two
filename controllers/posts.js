@@ -14,14 +14,15 @@ router.get('/new', function(req, res) {
 	});
 });
 
+
 ////// CREATE POST- submitting the form to server - this works
 router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
 	var postAuthor =req.session.currentUser; 
 	console.log("req.session.currentUser is ", postAuthor);
-	// user: req.session.username;
+		// user: req.session.username;
 		// body: req.body.body;
-	console.log("new post is:", newPost);		
+	console.log("new post is:", newPost);		//at this moment, works till here
 	newPost.save(function(err,post){
 		if (err) {
 			console.log("new post not added, try again");

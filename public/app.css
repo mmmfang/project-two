@@ -58,7 +58,7 @@ label {
 	margin-bottom: 5px;
 	margin-left: 20px;
 }
-.editbutton
+
 
 #welcome-pic {
 	max-width: 100%;
@@ -82,6 +82,9 @@ div.post-topic-top {
 	padding-left:0px;
 }
 
+.want-inline {
+	display: inline-block;
+}
 .comment {
 	border: 1px dotted skyblue;
 	background-color: grey;
@@ -91,7 +94,8 @@ div.post-topic-top {
 input[type=submit] {
 	background-color: magenta;
 	color: white;
-	border: 4px;
-	border-radius: 5px;
+	border-radius: 3px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 

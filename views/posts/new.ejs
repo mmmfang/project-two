@@ -1,7 +1,14 @@
 <div class="needs-padding-left">
-<h3>Create a Topic </h3>
+<h3>Create a Topic</h3>
+<h4 class="italics"></h4>
 
 <form action="/posts" method="post">
+    <label>Author Name:
+     </label>
+    <p><%= author %></p>
+    <br/>
+    <br/>
+
     <label>Topic</label>
     <br/>
     <input  type="text"
@@ -9,12 +16,7 @@
             placeholder="post title">
     <br/>
 
-    <label>Author Name
-     </label>
-    <br/>
-    <p><%= author %></p>
-    <br/>
-    <br/>
+
 
     <label>Write your topic post below</label>
     <br/>

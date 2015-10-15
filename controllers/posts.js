@@ -19,7 +19,7 @@ router.get('/new', function(req, res) {
 router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
 	newPost.author =req.session.currentUser; 
-	console.log("req.session.currentUser is ", newPost.author);
+	console.log("req.session.currentUser is ", req.session.currentUser);
 		// user: req.session.username;
 		// body: req.body.body;
 	console.log("new post is:", newPost);		//at this moment, works till here
@@ -27,7 +27,8 @@ router.post('/', function(req,res){
 		if (err) {
 			console.log("new post not added, try again");
 		} else {
-			res.redirect(301,'posts');
+			res.redirect(301,'posts')
+			// author: req.session.currentUser;
 		}
 	})
 });
@@ -40,7 +41,7 @@ router.get('/', function(req, res) {
 		} else {
 			res.render('posts/index', {
 				posts: allPosts,
-				currentUser: req.session.currentUser
+				author: req.session.currentUser
 			});
 		}
 	})
@@ -95,7 +96,7 @@ router.patch('/comment/:id', function(req, res) {
 	console.log("new comment is: ", addComment);
 	Post.findByIdAndUpdate(req.params.id, addComment, function (err, callback) {
 		if (err) {
-			console.log("error adding commment");
+			console.log("error adding commment SOB SOB");
 		} else {
 			res.redirect(301, '/posts/:id');
 			console.log("comments be posting...yeahhh");
@@ -104,29 +105,10 @@ router.patch('/comment/:id', function(req, res) {
 }); 
 
 
-  // newComment.comment.date = Date.now();
-
 
 ///NEEDS MUCHO TESTING - COMMENTS SECTION
 
-///// NEW COMMENT (which goes under posts)
-// router.get('/comment', function(req, res) {
-// 	res.render('posts/comment');  
-// }); //the comment page loads but its not connected to anything
 
-//////CREATE NEW COMMENT - submitting the comment form to server
-// router.post('/comment', function(req,res){
-// 	var newComment = new Comment(req.body.post.comment);
-// 	console.log("new comment on that post is:", newComment);
-
-// 	newComment.save(function(err,comments){
-// 		if (err) {
-// 			console.log("new comment not added, try again");
-// 		} else {
-// 			res.redirect(301,'index');
-// 		}
-// 	})
-// });
 // END COMMENTS TESTING SECTION
 
 

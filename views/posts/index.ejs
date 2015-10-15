@@ -6,18 +6,21 @@
 		<h4>Topic: <%= post.topic %> </h4>
 		</div>
 		
-		<h5> Posted by: <%= post.author %> </h5>
+		<h5> 
+		<%= post.author %> </a> </h5>
 		<div class="needs-padding-left">
 			<p> <%= post.body %> </p>
 			<p> <%= post.date %> </p>
 		</div>
+		
 		<form 	class="view-button"
 				method="get"
 				action="/posts/<%=post._id%>" >
+	
 				<input	type="submit"	
 						value="View Post" >
 		</form>
-		<a href="./posts/comment" class="btn btn-primary  mainbutton"> Comment on this topic   </a>
+		<a href="/posts/comment" class="btn btn-primary  mainbutton"> Comment on this topic   </a>
 	
 		<a href= "/posts/<%=post._id%>/edit"> [Edit] </a>
 		<form 	class="delete-button"

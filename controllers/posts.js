@@ -10,14 +10,16 @@ var express = require('express'),
 
 ////// NEW POST - new post form is here - this works
 router.get('/new', function(req, res) {
-	res.render('posts/new');
+	res.render('posts/new', {
+	});
 });
 
 ////// CREATE POST- submitting the form to server - this works
 router.post('/', function(req,res){
 	var newPost = new Post(req.body.post);
-	console.log("new post is:", newPost);
-
+		// user: req.session.username;
+		// body: req.body.body;
+	console.log("new post is:", newPost);		
 	newPost.save(function(err,post){
 		if (err) {
 			console.log("new post not added, try again");
@@ -36,6 +38,48 @@ router.get('/', function(req, res) {
 			res.render('posts/index', {
 				posts: allPosts
 			});
+		}
+	})
+}); 
+
+//SHOW EACH POST - works thank f---ing goodness
+router.get('/:id', function(req, res) {
+	Post.findById(req.params.id, function(err, specifiedPost){
+		if (err) {
+			console.log("error getting id I think??");
+		} else {
+			res.render('posts/show', {
+				post: specifiedPost
+			});
+		}
+	}) 
+});
+
+//EDIT (GET PART) - THIS WORKS
+router.get('/:id/edit', function(req, res) {
+	Post.findById(req.params.id, function(err, specifiedPost){
+		if (err) {
+			console.log("error editing post");
+		} else {
+			res.render('posts/edit', {
+				post: specifiedPost
+			});
+		}
+	}) 
+});
+
+//UPDATE POST (PATCH Part) - at long last, you work. Thank you 30 year old Jesus
+
+router.patch('/:id', function(req, res) {
+	console.log("shits workinnnnnn!")
+	var postOptions = req.body.post;
+	Post.findByIdAndUpdate(req.params.id, postOptions, function(err, specifiedPost){
+		if (err) {
+			console.log("error patching post");
+		} else {
+			res.redirect(301, '/posts');
+			console.log("updated!!!");
+			// res.redirect(302, '/'+ specifiedPost._id)
 		}
 	})
 }); 
@@ -64,58 +108,18 @@ router.get('/', function(req, res) {
 // END COMMENTS TESTING SECTION
 
 
+
 //DELETE //works
 router.delete('/:id', function(req, res) {
 	Post.findByIdAndRemove(req.params.id, function(err){
 		if(err) {
 			console.log("can't delete post, try again");
 		} else {
-			res.redirect(302, '/');
+			res.redirect(302, '/posts');
 		}
 	}) 
 });
 
-//SHOW EACH POST - works thank f---ing goodness
-router.get('/:id', function(req, res) {
-	Post.findById(req.params.id, function(err, specifiedPost){
-		if (err) {
-			console.log("error getting id I think??");
-		} else {
-			res.render('posts/show', {
-				post: specifiedPost
-			});
-		}
-	}) 
-});
-
-
-//EDIT (GET PART) - THIS WORKS
-router.get('/:id/edit', function(req, res) {
-	Post.findById(req.params.id, function(err, specifiedPost){
-		if (err) {
-			console.log("error editing post");
-		} else {
-			res.render('posts/edit', {
-				post: specifiedPost
-			});
-		}
-	}) 
-});
-
-//UPDATE POST (PATCH Part)
-
-router.patch('/:id', function(req, res) {
-	var postOptions = req.body.post;
-	Post.findByIdAndUpdate(req.params.id, postOptions, function(err, specifiedPost){
-		if (err) {
-			console.log("error patching post");
-		} else {
-			// res.redirect(301, '/');
-			// console.log("updated!!!");
-			res.redirect(302, '/'+ specifiedPost._id)
-		}
-	})
-}); 
 
 router.post('/', function (req, res) {
 	var postOptions = req.body.post;

@@ -17,15 +17,16 @@ var ejs = require('ejs'),
 server.set('views', './views');
 server.set('view engine', 'ejs'); 
 
-server.use(express.static("./public"));
-server.use(morgan('dev'));
-server.use(expressLayouts);
-
 server.use(session({
 	secret: "whyohwhyarentyousaving",
 	resave: true,
 	saveUninitialized: false
 }));
+
+server.use(express.static("./public"));
+server.use(morgan('dev'));
+server.use(expressLayouts);
+
 
 server.use(bodyParser.urlencoded({
 	extended:true
@@ -43,7 +44,21 @@ server.use('/posts', postsController);
 
 
 //defined routes
-server.get('/welcome', function(req, res) {
+
+server.get('/', function(req,res) {
+	res.render('homepage');
+});
+
+// server.use(function(req,res,next){
+// 	if req.session.username == undefined {
+// 		res.redirect(302,'/')
+// 	} else {
+// 		res.locals.user = req.session.username;
+// 		next();
+// 	}
+// });
+
+server.use('/welcome', function(req, res) {
 	if (req.session.currentUser) {
 		res.render('welcome', {
 			currentUser: req.session.currentUser
@@ -53,14 +68,17 @@ server.get('/welcome', function(req, res) {
 	}
 });
 
+ // server.use(function (req, res, next) {
+ //    res.locals.flash  = req.session.flash || {};
+ //    req.session.flash = {};
+ //    next();
+ //  });
+
 server.get('/test', function(req,res) {
 	res.write("Welcome to my fantastico app");
 	res.end();
 });
 
-server.get('/', function(req,res) {
-	res.render('homepage');
-});
 
 //utility routes
 

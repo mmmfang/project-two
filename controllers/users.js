@@ -9,26 +9,12 @@ router.get('/new', function(req, res) {
 	res.render('users/new');
 }); //works 
 
-router.post('/', function(req,res){
-	var attempt = req.body.user;
-	console.log("attempt is ",attempt);
-	User.findOne({username: attempt.username}, function(err, user) {
-		console.log(user);
-		if (user && user.password=== attempt.password) {
-			req.session.currentUser = user.username;
-			res.redirect(301,"welcome");
-		} else {
-			console.log("no user w that name");
-			res.redirect(301, "users/login")
-		}
-	});
-});
-
+///AFTER GOING THRU SIGNUP PAGE
 router.post('/', function(req,res) {
 	var newUser = User(req.body.user);
 	console.log("new user is", newUser);
 
-	req.session.currentUser = newUser.username; //works til here,not sure if saving
+	req.session.currentUser = newUser.username; 
 
 	newUser.save(function(err, user){
 		if (err) {
@@ -42,27 +28,47 @@ router.post('/', function(req,res) {
 
 ///////	LOGIN ROUTE ////
 router.get('/login', function(req,res){
-	res.render('users/login');
+	res.render('session/login');
 }) //works
 
 
+///AFTER GOING THRU LOGIN PAGE
 
-// for singup
-router.get('/:id', function(req,res){
- 	User.findById(req.params.id, function(err,user){
+router.post('/', function(req,res){
+	var attempt = req.body.user;
+	console.log("attempt is ", attempt);
+	User.findOne({username: attempt.username}, function(err, user) {
 		console.log(user);
- 	})
- })
+		if (user && user.password=== attempt.password) {
+			req.session.currentUser = user.username;
+			res.redirect(301,"welcome");
+		} else {
+			console.log("no user w that name");
+			res.redirect(301, "users/new")
+		}
+	});
+});
 
-// '/edit/:id'  User.findByreq.params.id
+//BELOW IS CONFUSINGGG
 
-// //To show all users
-// router.get('/:id', function(req,res){
-// 	User.findById(req.params.id, function(err,user){
-// 		console.log(err, user);
-// 	})
-// })
-// // })
+
+// //To show all users and their posts
+router.get('/:id', function(req,res){
+	var user= req.params.username;
+
+	Post.find({
+		user: authorName
+	}, function(err, authorPosts) {
+		if (err) {
+			console.log("err getting all author posts")
+		} else {
+			res.render('/posts', {
+				user: authorName,
+				posts: authorPosts
+			})
+		}
+	})
+})
 
 //SHOW ALL USERS
 
@@ -77,21 +83,6 @@ router.get('/index', function(req, res) {
 		}
 	})
 });
-	
-
-// router.get('/welcome', function(req,res){
-// 	if(req.session.currentUser) {
-// 		res.render('welcome', {
-// 			currentUser: req.session.currentUser
-// 		});
-// 	} else {
-// 		res.redirect(301, '/users/login')
-// 	}
-// });
-
-// router.get('/welcome', function(req,res){
-// 	res.render('welcome');
-// })
 
 
 //To edit
@@ -113,13 +104,6 @@ router.get('/:id/edit', function(req,res){
 	})
 });
 
-// // router.patch('/:id', function(req,res){
-// // 	})
-// // })
-
-// // router.delete('/:id', function(req,res){
-// // 	})
-// // })
 
 
 //export router object

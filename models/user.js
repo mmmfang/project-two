@@ -8,6 +8,7 @@ var userSchema = Schema({
 }, {collection: 'users', strict:false});
 
 
+
 var User = mongoose.model("User", userSchema);
 //storing user documents in a collection called users
 module.exports = User;

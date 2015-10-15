@@ -1,0 +1,7 @@
+<a href="/views/posts"> Back to main forum page </a>
+
+<h1>Posts by : <%= user%> </h1>
+
+<% posts.forEach(function(post){
+	<h3> <%=post.body %> </h3>
+<% })

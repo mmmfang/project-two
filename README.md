@@ -5,7 +5,7 @@
 This project builds a forum page for an existing website, BaubleBar. The purpose of the forum is to create a social online community for BaubleBar enthusiasts aka stylin fashion jewelry aficionados who can discuss their thoughts on products, get advice, suggest new products/ old products they want brought back and much more. So my users are fans of the brand or those who want to discuss accessories! These people are good fashionistas...not sketchy internet people...so they are getting a lot of trust since they can edit and delete any post! (To be changed if I have the time)
 
 Project lives here! https://still-ravine-3077.herokuapp.com/
-Note as of 10.16.15 - the app on Heroku times out with H12 error when trying to login, though that works fine locally. I think it is taking too long to check the attempted username against the database. The signup function works fine.
+
 
 ##Technology Used
 - HTML

@@ -4,7 +4,7 @@
 	<div class="post">
 		<div class="post-topic-top">
 		<h4>Topic: <%= post.topic %> </h4>
-		 <p class="right"> Number of Comments: <%= post.comment.length%>	Number of Upvotes: <%=post.upvotes%></p>
+		 <p class="right"> Number of Comments: <%= post.comment.length%>	Upvote: <%=post.upvotes%></p>
 		</div>
 		
 		<h5> by <a href=#> <%=post.author%></a> </h5>
@@ -34,6 +34,3 @@
 	</div>
 <% }) %>
 
-<form action="/session?_method=DELETE" method="POST">
-  <input type="submit" value="Log Out">
-</form>

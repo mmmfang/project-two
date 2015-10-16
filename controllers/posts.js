@@ -53,6 +53,7 @@ router.get('/:id', function(req, res) {
 		if (err) {
 			console.log("error getting id I think??");
 		} else {
+			console.log(specifiedPost);
 			res.render('posts/show', {
 				post: specifiedPost
 			});
@@ -98,7 +99,7 @@ router.patch('/comment/:id', function(req, res) {
 		if (err) {
 			console.log("error adding commment SOB SOB");
 		} else {
-			res.redirect(301, '/posts/:id');
+			res.redirect(301, '/posts/' + req.params.id);
 			console.log("comments be posting...yeahhh");
 		}
 	})

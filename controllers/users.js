@@ -13,11 +13,6 @@ router.get('/login', function(req,res){
 	res.render('session/login');
 }) //works
 
-///////////// SIGN UP ROUTE ////////////////////////////////////
-router.get('/new', function(req, res) {
-	res.render('users/new');
-}); //works 
-
 
 //////////// AFTER GOING THRU LOGIN PAGE ///////////////////////
 router.post('/', function(req,res){
@@ -34,6 +29,11 @@ router.post('/', function(req,res){
 		}
 	});
 });
+
+///////////// SIGN UP ROUTE ////////////////////////////////////
+router.get('/new', function(req, res) {
+	res.render('users/new');
+}); //works 
 
 
 ////////////AFTER GOING THRU SIGNUP PAGE ////////////////////////

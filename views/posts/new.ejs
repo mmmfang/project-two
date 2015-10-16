@@ -1,10 +1,9 @@
 <div class="needs-padding-left">
-<h3>Create a Topic</h3>
-<h4 class="italics"></h4>
+    <h3>Create a Topic</h3>
+    <h4 class="italics"></h4>
 
-<form action="/posts" method="post">
-    <p>Author Name:<%= author %></p>
-    <br/>
+  <form action="/posts" method="post">
+    <p>Author Name: <%= author %></p>
 
     <label>Topic</label>
     <br/>
@@ -13,8 +12,6 @@
             placeholder="post title">
     <br/>
 
-
-
     <label>Write your topic post below</label>
     <br/>
     <textarea name="post[body]" rows="4" cols="50">
@@ -22,6 +19,6 @@
     <br/>
 
     <input type="submit"  value="submit">
-</form>
+  </form>
 
 </div>

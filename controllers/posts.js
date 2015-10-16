@@ -22,13 +22,13 @@ router.post('/', function(req,res){
 	console.log("newPost.author is ", req.session.currentUser);
 		// user: req.session.username;
 		// body: req.body.body;
-	console.log("new post is:", newPost);		//at this moment, works till here
+	console.log("new post is:", newPost);		
 	newPost.save(function(err,post){
 		if (err) {
 			console.log("new post not added, try again");
 		} else {
 			res.redirect(301,'posts')
-			// author: req.session.currentUser;
+
 		}
 	})
 });
@@ -47,7 +47,7 @@ router.get('/', function(req, res) {
 	})
 }); 
 
-//SHOW EACH POST - works thank f---ing goodness
+//////SHOW EACH POST - works thank f---ing goodness
 router.get('/:id', function(req, res) {
 	Post.findById(req.params.id, function(err, specifiedPost){
 		if (err) {
@@ -61,7 +61,7 @@ router.get('/:id', function(req, res) {
 	}) 
 });
 
-//EDIT (GET PART) - THIS WORKS
+///////EDIT (get) - THIS WORKS
 router.get('/:id/edit', function(req, res) {
 	Post.findById(req.params.id, function(err, specifiedPost){
 		if (err) {
@@ -77,7 +77,6 @@ router.get('/:id/edit', function(req, res) {
 //UPDATE POST (PATCH Part) - at long last, you work. Thank you 30 year old Jesus
 
 router.patch('/:id', function(req, res) {
-	console.log("shits workinnnnnn!")
 	var postOptions = req.body.post;
 	Post.findByIdAndUpdate(req.params.id, postOptions, function(err, specifiedPost){
 		if (err) {
@@ -90,7 +89,7 @@ router.patch('/:id', function(req, res) {
 	})
 }); 
 
-//TESTING COMMENTS : findByIdAndUpdate(id, update, callback)
+///////COMMENTS : findByIdAndUpdate(id, update, callback)
 
 router.patch('/comment/:id', function(req, res) {
 	var addComment = {$push: {comment: {content: req.body.post.comment, user: req.session.currentUser}}};
@@ -100,21 +99,13 @@ router.patch('/comment/:id', function(req, res) {
 			console.log("error adding commment SOB SOB");
 		} else {
 			res.redirect(301, '/posts/' + req.params.id);
-			console.log("comments be posting...yeahhh");
+			console.log("comments be posting...hallelujah");
 		}
 	})
 }); 
 
 
-
-///NEEDS MUCHO TESTING - COMMENTS SECTION
-
-
-// END COMMENTS TESTING SECTION
-
-
-
-//DELETE //works
+///////DELETE //works
 router.delete('/:id', function(req, res) {
 	Post.findByIdAndRemove(req.params.id, function(err){
 		if(err) {
@@ -130,7 +121,7 @@ router.post('/', function (req, res) {
 	var postOptions = req.body.post;
 	 	console.log("postOptions is ", postOptions);
  	var newPost = new Post(postOptions);
- 		console.log("newPost is ", newPost);
+ 		console.log("newPost izzz ", newPost);
  	
  	newPost.save(function(err, postafterDB) {
    	if (err) {

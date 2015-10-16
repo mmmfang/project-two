@@ -1,35 +1,38 @@
-<h2> The Watering Hole - All Topics Here :) </h2>
+<h2> The Watering Hole - Main Forum Page</h2>
 
 <% posts.forEach(function(post, i) {  %>
 	<div class="post">
+
 		<div class="post-topic-top">
-		<h4>Topic: <%= post.topic %> </h4>
-		 <p class="right"> Number of Comments: <%= post.comment.length%>	Upvote: <%=post.upvotes%></p>
+			<h4>Topic: <%= post.topic %> </h4>
+		 	<p class="right"> Number of Comments: 
+		 			<%= post.comment.length%></p>
 		</div>
 		
-		<h5> by <a href=#> <%=post.author%></a> </h5>
+			<h5> by <a href=#> <%=post.author%></a> </h5>
+		
 		<div class="needs-padding-left">
 			<p> <%= post.body %> </p>
 			<p> Date Posted: <%= post.date %> </p>
 		</div>
 		
-		<form 	class="view-button want-inline"
-				method="get"
-				action="/posts/<%=post._id%>" >
-			<input	type="submit"	
+			<form 	class="view-button want-inline"
+					method="get"
+					action="/posts/<%=post._id%>" >
+		 	<input	type="submit"	
 					value="View Post" >
-		</form>
+			</form>
 
-		<a href= "/posts/<%=post._id%>/edit" class="btn btn-default editbutton want-inline"> Click to edit post</a>
+			<a 	href= "/posts/<%=post._id%>/edit" 
+				class="btn btn-default editbutton want-inline"> 
+				Click to edit post</a>
 
-		<form 	class="delete-button want-inline"
-				method="post"
-				action="/posts/<%=post._id%>?_method=DELETE" >
-				<input	type="submit"	
-						value="Delete Post" >
-		</form>
-
-
+			<form 	class="delete-button want-inline"
+					method="post"
+					action="/posts/<%=post._id%>?_method=DELETE" >
+			 <input type="submit"	
+					value="Delete Post" >
+			</form>
 
 	</div>
 <% }) %>

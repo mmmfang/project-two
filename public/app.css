@@ -1,20 +1,14 @@
+/*------All Page Styles-------------*/
+
 body {
 	background-color: floralwhite;
 }
 
+/*----Styles for Header-------------*/
+
 h1, h3, h4, h5, form {
 	font-family: 'Roboto', sans-serif;
 	padding-left: 20px;
-}
-
-h2, .italics {
-	font-family: Garamond, serif;
-	padding-left: 20px
-}
-
-h1#welcome-name {
-	font: 60px;
-	font-family: Garamond, serif;
 }
 
 h1{
@@ -22,10 +16,28 @@ h1{
 	font-size: 40px;
 }
 
+h1#welcome-name {
+	font: 60px;
+	font-family: Garamond, serif;
+}
+
+h2, .italics {
+	font-family: Garamond, serif;
+	padding-left: 20px
+}
+
+/*-----Image Styles-----------------*/
+
 .homepage {
 	background-image: url("images/baublebar-bg.jpg");
 }
 
+#welcome-pic {
+	max-width: 100%;
+	margin: 0px;
+}
+
+/*----Text Styles-------------------*/
 .whitetext {
 	color: white;
 	text-shadow: 1px 1px black;
@@ -35,13 +47,11 @@ h1{
 	text-align: center;
 }
 
-label {
-	padding: 5px;
-}
-
 .needs-padding-left {
 	padding-left: 20px;
 }
+
+/*---Button/Input/Form Styles------*/
 
 .mainbutton {
 	background-color:teal;
@@ -59,10 +69,24 @@ label {
 	margin-left: 20px;
 }
 
-#welcome-pic {
-	max-width: 100%;
-	margin: 0px;
+input[type=submit] {
+	background-color: magenta;
+	color: white;
+	border-radius: 3px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
+
+label {
+	padding: 5px;
+}
+
+.want-inline {
+	display: inline-block;
+}
+
+
+/*----Styling for posts---------*/
 
 .post {
 	border: 2px solid grey;
@@ -82,23 +106,16 @@ div.post-topic-top {
 	padding-left:0px;
 }
 
-.right {
-	text-align: right;
-}
-.want-inline {
-	display: inline-block;
-}
 .comment {
-	border: 1px dotted skyblue;
-	background-color: grey;
-	display:inline-block;
+	border: 4px solid white;
+	border-radius: 8px;
+	background-color: lightgoldenrodyellow;
+	padding: 10px;
+	width: 50%;
+	margin-left: 40px;
 }
 
-input[type=submit] {
-	background-color: magenta;
-	color: white;
-	border-radius: 3px;
-	margin-top: 5px;
-	margin-bottom: 5px;
+.right {
+	text-align: right;
 }
 

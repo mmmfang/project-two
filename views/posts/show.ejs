@@ -1,48 +1,45 @@
-	<div class="single-post">
-		<h3>Topic: <%= post.topic %> </h3>		
-		<h4> Posted by: <%= post.author %> </h4>
-		<div class="needs-padding-left">
-			<p> <%= post.body %> </p>
-			<p> <%= post.date %> </p>
+<div class="single-post">
+	<h3>Topic: <%= post.topic %> </h3>		
+	<h4> Posted by: <%= post.author %> </h4>
+	<div class="needs-padding-left">
+		<p> <%= post.body %> </p>
+		<p> <%= post.date %> </p>
 		
+		<a 		href= "/posts/<%=post._id%>/edit" 
+				class="btn btn-default editbutton want-inline"> 
+				Edit post</a>
 
-
-			<a href= "/posts/<%=post._id%>/edit" 
-			class="btn btn-default editbutton want-inline"> 
-			Edit post</a>
-
-			<form 	class="delete-button want-inline"
-				method="post"
+		<form 	class="delete-button want-inline" method="post"
 				action="/posts/<%=post._id%>?_method=DELETE" >
-				<input	type="submit"	
-						value="Delete Post" >
-			</form>
+				<input	type="submit" value="Delete Post" >
+		</form>
 
-			<form 	action="/posts/<%=post._id%>"
-					class="want-inline">
+		<form 	action="/posts/<%=post._id%>" class="want-inline">
 				<input type="submit" value="Upvote">
-			</form>
+		</form>
 
-<hr />
+		<hr />
+	</div>
 
-<div class="comment-zone">
-	<h3>Comment here </h3>	
+  <div class="comment-zone">
+		<h3>Comment here </h3>	
 
-	<form action="/posts/comment/<%=post._id%>?_method=PATCH" method="post">
-	 <br/>
-    	<textarea   name="post[comment]" 
+		<form action="/posts/comment/<%=post._id%>?_method=PATCH" method="post">
+		<br/>
+    	
+   		<textarea   name="post[comment]" 
             		rows="4" cols="60">
     	</textarea>
-     <br/>
+    	<br/>
    
-     <input type="submit" value="submit">
-	</form>
+     	<input type="submit" value="submit">
+		</form>
 
-<p>View Comments</p>
-	<% post.comment.forEach(function(comment) { %>
-		<p><%= comment.content %></p>
-		<p><%= comment.user %></p>
-	<% }) %>
+		<h4>View Comments</h4>
+			<% post.comment.forEach(function(comment) { %>
+				<p class="comment"><%= comment.content %> 
+				/ Comment by: <%= comment.user %></p>
+			<% }) %>
 
-
-	</div>
+  </div>
+</div>

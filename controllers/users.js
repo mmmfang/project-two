@@ -8,28 +8,6 @@ var express = require('express'),
 ////////////////////////////////////////////////////////////////
 
 
-/////////////////// LOGIN ROUTE ////////////////////////////////
-router.get('/login', function(req,res){
-	res.render('session/login');
-}) //works
-
-
-//////////// AFTER GOING THRU LOGIN PAGE ///////////////////////
-router.post('/', function(req,res){
-	var attempt = req.body.user;
-	console.log("attempt is ", attempt);
-	User.findOne({username: attempt.username}, function(err, user) {
-		console.log(user);
-		if (user && user.password=== attempt.password) {
-			req.session.currentUser = user.username;
-			res.redirect(301,"welcome");
-		} else {
-			console.log("no user w that name");
-			res.redirect(301, "users/new")
-		}
-	});
-});
-
 ///////////// SIGN UP ROUTE ////////////////////////////////////
 router.get('/new', function(req, res) {
 	res.render('users/new');
@@ -52,6 +30,30 @@ router.post('/', function(req,res) {
 		}
 	}) 
 });
+
+
+/////////////////// LOGIN ROUTE ////////////////////////////////
+router.get('/login', function(req,res){
+	res.render('session/login');
+}) //works
+
+
+//////////// AFTER GOING THRU LOGIN PAGE ///////////////////////
+router.post('/login', function(req,res){
+	var attempt = req.body.user;
+	console.log("attempt is ", attempt);
+	User.findOne({username: attempt.username}, function(err, user) {
+		console.log(user);
+		if (user && user.password=== attempt.password) {
+			req.session.currentUser = user.username;
+			res.redirect(301,"welcome");
+		} else {
+			console.log("no user w that name");
+			res.redirect(301, "users/new")
+		}
+	});
+});
+
 
 ////////////TO LOGOUT /////////////////////////////////////////
 router.get('/logout', function(req, res) {

@@ -38,5 +38,8 @@ Project lives here! https://still-ravine-3077.herokuapp.com/
 - I would have wished to retained some more of my sanity...but we can't have it all... 
 
 ####Photo Credits
-Background photo on home page from Mashable
-Photo on welcome page from honestlywtf.com
+- Background photo on home page from Mashable 
+- Photo on welcome page from honestlywtf.com
+
+#### Preliminary wireframe
+/Users/maefang/Downloads/IMG_1925.JPG

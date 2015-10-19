@@ -42,4 +42,4 @@ Project lives here! https://still-ravine-3077.herokuapp.com/
 - Photo on welcome page from honestlywtf.com
 
 #### Preliminary wireframe
-/Users/maefang/Downloads/IMG_1925.JPG
+![alt text](public/images/screenshot.png "Prelim wireframe")

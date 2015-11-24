@@ -3,7 +3,8 @@ var express = require('express'),
 	server	= express(),
 	MONGOURI = process.env.MONGOLAB_URI || "mongodb://localhost:27017/baubleBarForum",
 	dbname	= "baubleBarForum",
-	mongoose = require('mongoose');
+	mongoose = require('mongoose')
+	bcrypt = require('bcrypt');
 
 var ejs = require('ejs'),
 	bodyParser = require('body-parser'),

@@ -103,7 +103,7 @@ server.use(function(req,res,next){
 })
 
 //Mongoose starts
-mongoose.set('debug', false);
+mongoose.set('debug', true);
 mongoose.connect(MONGOURI + "/" + dbname);
 // mongoose.connect('mongodb://localhost:27017/baubleBarForum', function(){
 // 	console.log("connected to local mongodb");

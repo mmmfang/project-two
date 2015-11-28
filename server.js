@@ -73,13 +73,12 @@ server.use('/welcome', function(req, res) {
  //    res.locals.flash  = req.session.flash || {};
  //    req.session.flash = {};
  //    next();
- //  });
+ //  }); 
 
 server.get('/test', function(req,res) {
 	res.write("Welcome to my fantastico app");
 	res.end();
 });
-
 
 //utility routes
 

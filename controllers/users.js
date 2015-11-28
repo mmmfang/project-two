@@ -14,9 +14,14 @@ router.get('/new', function(req, res) {
 	res.render('users/new');
 }); //works 
 
+/////////////////// LOGIN ROUTE ////////////////////////////////
+router.get('/login', function(req,res){
+	res.render('session/login');
+}) //works
+
 
 ////////////AFTER GOING THRU SIGNUP PAGE ////////////////////////
-router.post('/', function(req,res) {
+router.post('/new', function(req,res) {
 	var newUser = User(req.body.user);
 	console.log("new user is", newUser);
 
@@ -28,29 +33,21 @@ router.post('/', function(req,res) {
 		} else {
 			// res.redirect(301, "users/" + user._id);
 			console.log('new user saved');
-			res.redirect(301, 'welcome');
+			res.redirect(301, '/welcome');
 		}
 	}) 
 });
 
 
-
-/////////////////// LOGIN ROUTE ////////////////////////////////
-router.get('/login', function(req,res){
-	res.render('session/login');
-}) //works
-
-
-
 //////////// AFTER GOING THRU LOGIN PAGE ///////////////////////
-router.post('/', function(req,res){
+router.post('/login', function(req,res){
 	var attempt = req.body.user;
 	console.log("attempt is ", attempt);
 	User.findOne({username: attempt.username}, function(err, user) {
 		//console.log(user);
 		if (user && user.password=== attempt.password) {
 			req.session.currentUser = user.username;
-			res.redirect(301,"welcome");
+			res.redirect(301,"/welcome");
 		} else {
 			console.log("no user w that name");
 			res.redirect(301, "/new")
@@ -82,7 +79,7 @@ router.get('/logout', function(req, res) {
 // 		  	res.redirect(302, '/session/new');
 // 		  }
 		
-// 	})
+// 	}) 
 // });
 
 // //SHOW ALL USERS - not applicable

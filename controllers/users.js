@@ -16,11 +16,11 @@ router.get('/new', function(req, res) {
 
 
 ////////////AFTER GOING THRU SIGNUP PAGE ////////////////////////
-router.post('/create', function(req,res) {
+router.post('/', function(req,res) {
 	var newUser = User(req.body.user);
 	console.log("new user is", newUser);
 
-//	req.session.currentUser = newUser.username; 
+	req.session.currentUser = newUser.username; 
 
 	newUser.save(function(err, user){
 		if (err) {
@@ -28,7 +28,7 @@ router.post('/create', function(req,res) {
 		} else {
 			// res.redirect(301, "users/" + user._id);
 			console.log('new user saved');
-			res.redirect(301, '/login');
+			res.redirect(301, 'welcome');
 		}
 	}) 
 });
